@@ -28,7 +28,7 @@ public class AmbienceClientWorldMixin {
 				if (ambientCondition.predicate().shouldPlay(client.world, client.player.getBlockPos(), client.player)) {
 					boolean allow = true;
 					for (TickableSoundInstance tickingSound : client.getSoundManager().soundSystem.tickingSounds) {
-						if (tickingSound.getId().equals(ambientCondition.event().getId())) {
+						if (tickingSound != null && tickingSound.getId().equals(ambientCondition.event().getId())) {
 							allow = false;
 							break;
 						}
