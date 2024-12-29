@@ -14,8 +14,10 @@ import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import org.ladysnake.effective.core.utils.EffectiveUtils;
 import org.ladysnake.effective.cosmetics.EffectiveCosmetics;
 import org.ladysnake.effective.cosmetics.particle.LegacyFireflyParticle;
 
@@ -44,8 +46,8 @@ public class TwilightLegacyFireflyParticle extends LegacyFireflyParticle {
 		this.setPos(this.x + TwilightLegacyFireflyParticle.getWanderingDistance(this.random), this.y + random.nextFloat() * 2d, this.z + TwilightLegacyFireflyParticle.getWanderingDistance(this.random));
 	}
 
-	public static double getWanderingDistance(net.minecraft.util.math.random.Random random) {
-		return random.nextGaussian() / 5d;
+	public static double getWanderingDistance(Random random) {
+		return EffectiveUtils.getRandomFloatOrNegative(random) / 5d;
 	}
 
 	@Override
@@ -162,9 +164,9 @@ public class TwilightLegacyFireflyParticle extends LegacyFireflyParticle {
 			if (groundLevel != 0) break;
 		}
 
-		this.xTarget = owner.getX() + random.nextGaussian();
-		this.yTarget = Math.min(Math.max(owner.getY() + random.nextGaussian(), groundLevel), groundLevel + maxHeight);
-		this.zTarget = owner.getZ() + random.nextGaussian();
+		this.xTarget = owner.getX() + EffectiveUtils.getRandomFloatOrNegative(this.random);
+		this.yTarget = Math.min(Math.max(owner.getY() + EffectiveUtils.getRandomFloatOrNegative(this.random), groundLevel), groundLevel + maxHeight);
+		this.zTarget = owner.getZ() + EffectiveUtils.getRandomFloatOrNegative(this.random);
 
 		BlockPos targetPos = BlockPos.ofFloored(this.xTarget, this.yTarget, this.zTarget);
 		if (this.world.getBlockState(targetPos).isFullCube(world, targetPos)

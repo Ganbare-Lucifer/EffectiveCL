@@ -17,6 +17,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.LightType;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 import org.ladysnake.effective.core.Effective;
@@ -25,6 +26,9 @@ import org.ladysnake.effective.core.render.entity.model.SplashBottomModel;
 import org.ladysnake.effective.core.render.entity.model.SplashBottomRimModel;
 import org.ladysnake.effective.core.render.entity.model.SplashModel;
 import org.ladysnake.effective.core.render.entity.model.SplashRimModel;
+import org.ladysnake.effective.core.utils.EffectiveUtils;
+
+import java.awt.*;
 
 public class SplashParticle extends Particle {
 	static final int MAX_FRAME = 12;
@@ -38,6 +42,7 @@ public class SplashParticle extends Particle {
 	Model waveBottomModel;
 	Model waveRimModel;
 	Model waveBottomRimModel;
+	BlockPos blockPos;
 
 	protected SplashParticle(ClientWorld world, double x, double y, double z) {
 		super(world, x, y, z);
@@ -52,6 +57,7 @@ public class SplashParticle extends Particle {
 		this.wave1End = 12;
 		this.wave2Start = 7;
 		this.wave2End = 24;
+		this.blockPos = BlockPos.ofFloored(x, y, z);
 	}
 
 	@Override
@@ -75,6 +81,10 @@ public class SplashParticle extends Particle {
 		if (waterColor == -1) {
 			waterColor = BiomeColors.getWaterColor(world, BlockPos.ofFloored(this.x, this.y, this.z));
 		}
+		float r = (float) (waterColor >> 16 & 0xFF) / 255.0f;
+		float g = (float) (waterColor >> 8 & 0xFF) / 255.0f;
+		float b = (float) (waterColor & 0xFF) / 255.0f;
+		waterColor = new Color(r, g, b, 1.0f).getRGB();
 
 		Identifier texture = Effective.id("textures/entity/splash/splash_" + MathHelper.clamp(frame, 0, MAX_FRAME) + ".png");
 		RenderLayer layer = RenderLayer.getEntityTranslucent(texture);
@@ -98,6 +108,7 @@ public class SplashParticle extends Particle {
 		modelRimBottomMatrix.translate(0, 0.001, 0);
 
 		int light = this.getBrightness(tickDelta);
+		int rimLight = this.getRimBrightness(tickDelta);
 
 		VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
 
@@ -106,10 +117,19 @@ public class SplashParticle extends Particle {
 		this.waveBottomModel.render(modelBottomMatrix, modelConsumer, light, OverlayTexture.DEFAULT_UV, waterColor);
 
 		VertexConsumer rimModelConsumer = immediate.getBuffer(rimLayer);
-		this.waveRimModel.render(modelRimMatrix, rimModelConsumer, light, OverlayTexture.DEFAULT_UV);
-		this.waveBottomRimModel.render(modelRimBottomMatrix, rimModelConsumer, light, OverlayTexture.DEFAULT_UV);
+		int rimColor = this.getRimColor(this.blockPos);
+		this.waveRimModel.render(modelRimMatrix, rimModelConsumer, rimLight, OverlayTexture.DEFAULT_UV, rimColor);
+		this.waveBottomRimModel.render(modelRimBottomMatrix, rimModelConsumer, rimLight, OverlayTexture.DEFAULT_UV, rimColor);
 
 		immediate.draw();
+	}
+
+	public int getRimBrightness(float tickDelta) {
+		return this.getBrightness(tickDelta);
+	}
+
+	public int getRimColor(BlockPos pos) {
+		return 0xFFFFFFFF;
 	}
 
 	private void drawSplash(int frame, Camera camera, float tickDelta) {
@@ -145,18 +165,18 @@ public class SplashParticle extends Particle {
 
 		if (this.age == 1) {
 			for (int i = 0; i < this.widthMultiplier * 10f; i++) {
-				this.world.addParticle(Effective.DROPLET, this.x + (this.random.nextGaussian() * this.widthMultiplier / 10f), this.y, this.z + (this.random.nextGaussian() * this.widthMultiplier / 10f), random.nextGaussian() / 10f * this.widthMultiplier / 2.5f, random.nextFloat() / 10f + this.heightMultiplier / 2.8f, random.nextGaussian() / 10f * this.widthMultiplier / 2.5f);
+				this.world.addParticle(Effective.DROPLET, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f, random.nextFloat() / 10f + this.heightMultiplier / 2.8f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f);
 			}
 		} else if (this.age == wave2Start) {
 			for (int i = 0; i < this.widthMultiplier * 5f; i++) {
-				this.world.addParticle(Effective.DROPLET, this.x + (this.random.nextGaussian() * this.widthMultiplier / 10f * .5f), this.y, this.z + (this.random.nextGaussian() * this.widthMultiplier / 10f * .5f), random.nextGaussian() / 10f * this.widthMultiplier / 5f, random.nextFloat() / 10f + this.heightMultiplier / 2.2f, random.nextGaussian() / 10f * this.widthMultiplier / 5f);
+				this.world.addParticle(Effective.DROPLET, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f, random.nextFloat() / 10f + this.heightMultiplier / 2.2f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f);
 			}
 		}
 	}
 
 	@Environment(EnvType.CLIENT)
-	public static class DefaultFactory implements ParticleFactory<SimpleParticleType> {
-		public DefaultFactory(SpriteProvider spriteProvider) {
+	public static class Factory implements ParticleFactory<SimpleParticleType> {
+		public Factory(SpriteProvider spriteProvider) {
 		}
 
 		@Nullable

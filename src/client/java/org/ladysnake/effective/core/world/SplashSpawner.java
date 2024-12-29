@@ -70,7 +70,7 @@ public final class SplashSpawner {
 		Random random = entity.getWorld().getRandom();
 
 		for (int j = 0; j < entity.getWidth() * 25f; j++) {
-			EffectiveUtils.spawnWaterEffect(entity.getWorld(), new Vec3d(entity.getX() + random.nextGaussian() * entity.getWidth() / 5f, entity.getY(), entity.getZ() + random.nextGaussian() * entity.getWidth()), random.nextGaussian() / 15f, random.nextFloat() / 2.5f, random.nextGaussian() / 15f, EffectiveUtils.WaterEffectType.DROPLET);
+			EffectiveUtils.spawnWaterEffect(entity.getWorld(), new Vec3d(entity.getX() + EffectiveUtils.getRandomFloatOrNegative(random) * entity.getWidth() / 5f, entity.getY(), entity.getZ() + EffectiveUtils.getRandomFloatOrNegative(random) * entity.getWidth()), EffectiveUtils.getRandomFloatOrNegative(random) / 15f, random.nextFloat() / 2.5f, EffectiveUtils.getRandomFloatOrNegative(random) / 15f, EffectiveUtils.WaterEffectType.DROPLET);
 		}
 	}
 

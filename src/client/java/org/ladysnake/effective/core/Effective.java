@@ -108,25 +108,25 @@ public class Effective implements ClientModInitializer {
 
 		// particles
 		SPLASH = Registry.register(Registries.PARTICLE_TYPE, Effective.id("splash"), new SplashParticleType(true));
-		ParticleFactoryRegistry.getInstance().register(SPLASH, SplashParticle.DefaultFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SPLASH, SplashParticle.Factory::new);
 		DROPLET = Registry.register(Registries.PARTICLE_TYPE, Effective.id("droplet"), FabricParticleTypes.simple(true));
-		ParticleFactoryRegistry.getInstance().register(DROPLET, DropletParticle.DefaultFactory::new);
+		ParticleFactoryRegistry.getInstance().register(DROPLET, DropletParticle.Factory::new);
 		RIPPLE = Registry.register(Registries.PARTICLE_TYPE, Effective.id("ripple"), FabricParticleTypes.simple(true));
-		ParticleFactoryRegistry.getInstance().register(RIPPLE, RippleParticle.DefaultFactory::new);
+		ParticleFactoryRegistry.getInstance().register(RIPPLE, RippleParticle.Factory::new);
 		GLOW_SPLASH = Registry.register(Registries.PARTICLE_TYPE, Effective.id("glow_splash"), new SplashParticleType(true));
-		ParticleFactoryRegistry.getInstance().register(GLOW_SPLASH, GlowSplashParticle.DefaultFactory::new);
+		ParticleFactoryRegistry.getInstance().register(GLOW_SPLASH, GlowSplashParticle.Factory::new);
 		GLOW_DROPLET = Registry.register(Registries.PARTICLE_TYPE, Effective.id("glow_droplet"), FabricParticleTypes.simple(true));
-		ParticleFactoryRegistry.getInstance().register(GLOW_DROPLET, GlowDropletParticle.DefaultFactory::new);
+		ParticleFactoryRegistry.getInstance().register(GLOW_DROPLET, GlowDropletParticle.Factory::new);
 		GLOW_RIPPLE = Registry.register(Registries.PARTICLE_TYPE, Effective.id("glow_ripple"), FabricParticleTypes.simple(true));
-		ParticleFactoryRegistry.getInstance().register(GLOW_RIPPLE, GlowRippleParticle.DefaultFactory::new);
+		ParticleFactoryRegistry.getInstance().register(GLOW_RIPPLE, GlowRippleParticle.Factory::new);
 //		ALLAY_TWINKLE = Registry.register(Registries.PARTICLE_TYPE, Effective.id("allay_twinkle"), new AllayTwinkleParticleType());
 //		ParticleFactoryRegistry.getInstance().register(ALLAY_TWINKLE, AllayTwinkleParticleType.Factory::new);
 		CHORUS_PETAL = Registry.register(Registries.PARTICLE_TYPE, Effective.id("chorus_petal"), FabricParticleTypes.simple(true));
-		ParticleFactoryRegistry.getInstance().register(CHORUS_PETAL, ChorusPetalParticle.DefaultFactory::new);
+		ParticleFactoryRegistry.getInstance().register(CHORUS_PETAL, ChorusPetalParticle.Factory::new);
 		EYES = Registry.register(Registries.PARTICLE_TYPE, Effective.id("eyes"), FabricParticleTypes.simple(true));
-		ParticleFactoryRegistry.getInstance().register(EYES, EyesParticle.DefaultFactory::new);
+		ParticleFactoryRegistry.getInstance().register(EYES, EyesParticle.Factory::new);
 		WILL_O_WISP = Registry.register(Registries.PARTICLE_TYPE, Effective.id("will_o_wisp"), FabricParticleTypes.simple(true));
-		ParticleFactoryRegistry.getInstance().register(WILL_O_WISP, fabricSpriteProvider -> new WillOWispParticle.DefaultFactory(fabricSpriteProvider, Effective.id("textures/entity/will_o_wisp.png"), 0.1f, 0.75f, 1.0f, 0.0f, 0.1f, 1.0f));
+		ParticleFactoryRegistry.getInstance().register(WILL_O_WISP, fabricSpriteProvider -> new WillOWispParticle.Factory(fabricSpriteProvider, Effective.id("textures/entity/will_o_wisp.png"), 0.1f, 0.75f, 1.0f, 0.0f, 0.1f, 1.0f));
 
 		// lodestone particles
 //		ParticleFactoryRegistry.getInstance().register(PIXEL, LodestoneWorldParticleType.Factory::new);

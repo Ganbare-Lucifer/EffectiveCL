@@ -22,7 +22,7 @@ public class DragonFireballRendererSwapper {
 //			for (int i = 0; i < 2; i++) {
 //				WorldParticleBuilder.create(Effective.DRAGON_BREATH)
 //					.enableForcedSpawn()
-//					.setSpinData(SpinParticleData.create((float) (dragonFireballEntity.getWorld().random.nextGaussian() / 5f)).build())
+//					.setSpinData(SpinParticleData.create((float) (dragonFireballEntity.getWorld().EffectiveUtils.getRandomFloatOrNegative(this.random) / 5f)).build())
 //					.setScaleData(GenericParticleData.create(scale, 0f).setEasing(Easing.CIRC_OUT).build())
 //					.setTransparencyData(GenericParticleData.create(1f).build())
 //					.setColorData(
@@ -32,7 +32,7 @@ public class DragonFireballRendererSwapper {
 //					)
 //					.enableNoClip()
 //					.setLifetime(20)
-//					.spawn(dragonFireballEntity.getWorld(), x + dragonFireballEntity.getWorld().random.nextGaussian() / 20f, y + (dragonFireballEntity.getHeight() / 2f) + dragonFireballEntity.getWorld().random.nextGaussian() / 20f, z + dragonFireballEntity.getWorld().random.nextGaussian() / 20f);
+//					.spawn(dragonFireballEntity.getWorld(), x + dragonFireballEntity.getWorld().EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f, y + (dragonFireballEntity.getHeight() / 2f) + dragonFireballEntity.getWorld().EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f, z + dragonFireballEntity.getWorld().EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f);
 //			}
 //
 //			ci.cancel();

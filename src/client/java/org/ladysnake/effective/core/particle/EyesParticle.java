@@ -121,10 +121,10 @@ public class EyesParticle extends SpriteBillboardParticle {
 	}
 
 
-	public static class DefaultFactory implements ParticleFactory<SimpleParticleType> {
+	public static class Factory implements ParticleFactory<SimpleParticleType> {
 		private final SpriteProvider spriteProvider;
 
-		public DefaultFactory(SpriteProvider spriteProvider) {
+		public Factory(SpriteProvider spriteProvider) {
 			this.spriteProvider = spriteProvider;
 		}
 

@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.render.entity.model.SplashBottomModel;
 import org.ladysnake.effective.core.render.entity.model.SplashModel;
+import org.ladysnake.effective.core.utils.EffectiveUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -190,11 +191,11 @@ public class LavaSplashParticle extends Particle {
 
 		if (this.age == 1) {
 			for (int i = 0; i < this.widthMultiplier * 10f; i++) {
-				this.world.addParticle(ParticleTypes.LAVA, this.x + (this.random.nextGaussian() * this.widthMultiplier / 10f), this.y, this.z + (this.random.nextGaussian() * this.widthMultiplier / 10f), random.nextGaussian() / 10f * this.widthMultiplier / 2.5f, random.nextFloat() / 10f + this.heightMultiplier / 2.8f, random.nextGaussian() / 10f * this.widthMultiplier / 2.5f);
+				this.world.addParticle(ParticleTypes.LAVA, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f, random.nextFloat() / 10f + this.heightMultiplier / 2.8f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f);
 			}
 		} else if (this.age == wave2Start) {
 			for (int i = 0; i < this.widthMultiplier * 5f; i++) {
-				this.world.addParticle(ParticleTypes.LAVA, this.x + (this.random.nextGaussian() * this.widthMultiplier / 10f * .5f), this.y, this.z + (this.random.nextGaussian() * this.widthMultiplier / 10f * .5f), random.nextGaussian() / 10f * this.widthMultiplier / 5f, random.nextFloat() / 10f + this.heightMultiplier / 2.2f, random.nextGaussian() / 10f * this.widthMultiplier / 5f);
+				this.world.addParticle(ParticleTypes.LAVA, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f, random.nextFloat() / 10f + this.heightMultiplier / 2.2f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f);
 			}
 		}
 	}

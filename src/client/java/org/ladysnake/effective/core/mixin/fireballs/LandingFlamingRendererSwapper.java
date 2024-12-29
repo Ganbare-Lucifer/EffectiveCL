@@ -16,7 +16,7 @@ public class LandingFlamingRendererSwapper {
 		if (EffectiveConfig.improvedDragonFireballsAndBreath) {
 //			WorldParticleBuilder.create(Effective.DRAGON_BREATH)
 //				.enableForcedSpawn()
-//				.setSpinData(SpinParticleData.create((float) (world.random.nextGaussian() / 5f)).build())
+//				.setSpinData(SpinParticleData.create((float) (world.EffectiveUtils.getRandomFloatOrNegative(this.random) / 5f)).build())
 //				.setScaleData(GenericParticleData.create(1f, 0f).setEasing(Easing.CIRC_OUT).build())
 //				.setTransparencyData(GenericParticleData.create(0.2f).build())
 //				.setColorData(

@@ -6,6 +6,7 @@ import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
@@ -79,5 +80,9 @@ public class EffectiveUtils {
 			}
 		}
 		return false;
+	}
+
+	public static float getRandomFloatOrNegative(Random random) {
+		return random.nextFloat() * 2f - 1f;
 	}
 }

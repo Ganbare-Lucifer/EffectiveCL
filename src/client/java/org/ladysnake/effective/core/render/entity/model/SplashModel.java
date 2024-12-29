@@ -27,7 +27,7 @@ public class SplashModel<T extends Entity> extends EntityModel<T> {
 
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-		splash.render(matrices, vertices, light, overlay);
+		splash.render(matrices, vertices, light, overlay, color);
 	}
 
 	@Override

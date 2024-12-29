@@ -28,7 +28,7 @@ public class FireballRendererSwapper<T extends Entity & FlyingItemEntity> {
 //			for (int i = 0; i < 2; i++) {
 //				WorldParticleBuilder.create(Effective.FLAME)
 //					.enableForcedSpawn()
-//					.setSpinData(SpinParticleData.create((float) (fireballEntity.getWorld().random.nextGaussian() / 5f)).build())
+//					.setSpinData(SpinParticleData.create((float) (fireballEntity.getWorld().EffectiveUtils.getRandomFloatOrNegative(this.random) / 5f)).build())
 //					.setScaleData(GenericParticleData.create(scale, 0f).setEasing(Easing.CIRC_OUT).build())
 //					.setTransparencyData(GenericParticleData.create(1f).build())
 //					.setColorData(
@@ -38,7 +38,7 @@ public class FireballRendererSwapper<T extends Entity & FlyingItemEntity> {
 //					)
 //					.enableNoClip()
 //					.setLifetime(20)
-//					.spawn(fireballEntity.getWorld(), x + fireballEntity.getWorld().random.nextGaussian() / 20f, y + (fireballEntity.getHeight() / 2f) + fireballEntity.getWorld().random.nextGaussian() / 20f, z + fireballEntity.getWorld().random.nextGaussian() / 20f);
+//					.spawn(fireballEntity.getWorld(), x + fireballEntity.getWorld().EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f, y + (fireballEntity.getHeight() / 2f) + fireballEntity.getWorld().EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f, z + fireballEntity.getWorld().EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f);
 //			}
 //
 //			ci.cancel();

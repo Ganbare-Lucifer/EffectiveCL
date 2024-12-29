@@ -18,6 +18,7 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.dimension.DimensionType;
 import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.EffectiveConfig;
+import org.ladysnake.effective.core.utils.EffectiveUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -43,7 +44,7 @@ public abstract class ParticleSpawningClientWorldMixin extends World {
 	@Inject(method = "randomBlockDisplayTick", slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/Biome;getParticleConfig()Ljava/util/Optional;")),
 		at = @At(value = "INVOKE", target = "Ljava/util/Optional;ifPresent(Ljava/util/function/Consumer;)V", ordinal = 0, shift = At.Shift.AFTER))
 	private void randomBlockDisplayTick(int centerX, int centerY, int centerZ, int radius, Random random, Block block, BlockPos.Mutable blockPos, CallbackInfo ci) {
-		BlockPos.Mutable pos = blockPos.add(MathHelper.floor(this.random.nextGaussian() * 50), MathHelper.floor(this.random.nextGaussian() * 10), MathHelper.floor(this.random.nextGaussian() * 50)).mutableCopy();
+		BlockPos.Mutable pos = blockPos.add(MathHelper.floor(EffectiveUtils.getRandomFloatOrNegative(this.random) * 50), MathHelper.floor(EffectiveUtils.getRandomFloatOrNegative(this.random) * 10), MathHelper.floor(EffectiveUtils.getRandomFloatOrNegative(this.random) * 50)).mutableCopy();
 		BlockPos.Mutable pos2 = pos.mutableCopy();
 		RegistryEntry<Biome> biome = this.getBiome(pos);
 
@@ -72,7 +73,7 @@ public abstract class ParticleSpawningClientWorldMixin extends World {
 //			}
 		}
 
-		pos = blockPos.add(MathHelper.floor(this.random.nextGaussian() * 50), MathHelper.floor(this.random.nextGaussian() * 25), MathHelper.floor(this.random.nextGaussian() * 50)).mutableCopy();
+		pos = blockPos.add(MathHelper.floor(EffectiveUtils.getRandomFloatOrNegative(this.random) * 50), MathHelper.floor(EffectiveUtils.getRandomFloatOrNegative(this.random) * 25), MathHelper.floor(EffectiveUtils.getRandomFloatOrNegative(this.random) * 50)).mutableCopy();
 
 		// WILL O' WISP
 		if (EffectiveConfig.willOWispDensity > 0) {

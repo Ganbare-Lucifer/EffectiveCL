@@ -99,9 +99,9 @@
 //				if (groundLevel != 0) break;
 //			}
 //
-//			this.xTarget = this.x + random.nextGaussian() * 10;
-//			this.yTarget = Math.min(Math.max(this.y + random.nextGaussian() * 2, groundLevel), groundLevel + maxHeight);
-//			this.zTarget = this.z + random.nextGaussian() * 10;
+//			this.xTarget = this.x + EffectiveUtils.getRandomFloatOrNegative(this.random) * 10;
+//			this.yTarget = Math.min(Math.max(this.y + EffectiveUtils.getRandomFloatOrNegative(this.random) * 2, groundLevel), groundLevel + maxHeight);
+//			this.zTarget = this.z + EffectiveUtils.getRandomFloatOrNegative(this.random) * 10;
 //
 //			BlockPos targetPos = BlockPos.ofFloored(this.xTarget, this.yTarget, this.zTarget);
 //			if (!canFlyThroughBlock(this.world, targetPos, this.world.getBlockState(targetPos))) {
@@ -110,9 +110,9 @@
 //
 //			this.lightTarget = getMostLitBlockAround();
 //		} else {
-//			this.xTarget = this.lightTarget.getX() + random.nextGaussian();
-//			this.yTarget = this.lightTarget.getY() + random.nextGaussian();
-//			this.zTarget = this.lightTarget.getZ() + random.nextGaussian();
+//			this.xTarget = this.lightTarget.getX() + EffectiveUtils.getRandomFloatOrNegative(this.random);
+//			this.yTarget = this.lightTarget.getY() + EffectiveUtils.getRandomFloatOrNegative(this.random);
+//			this.zTarget = this.lightTarget.getZ() + EffectiveUtils.getRandomFloatOrNegative(this.random);
 //
 //			if (this.world.getLightLevel(LightType.BLOCK, BlockPos.ofFloored(x, y, z)) > 0 && !this.world.isDay()) {
 //				this.lightTarget = getMostLitBlockAround();
@@ -143,7 +143,7 @@
 //
 //		// get other random blocks to find a different light source
 //		for (int i = 0; i < 15; i++) {
-//			BlockPos randBP = BlockPos.ofFloored(this.x + random.nextGaussian() * 10, this.y + random.nextGaussian() * 10, this.z + random.nextGaussian() * 10);
+//			BlockPos randBP = BlockPos.ofFloored(this.x + EffectiveUtils.getRandomFloatOrNegative(this.random) * 10, this.y + EffectiveUtils.getRandomFloatOrNegative(this.random) * 10, this.z + EffectiveUtils.getRandomFloatOrNegative(this.random) * 10);
 //			randBlocks.put(randBP, this.world.getLightLevel(LightType.BLOCK, randBP));
 //		}
 //

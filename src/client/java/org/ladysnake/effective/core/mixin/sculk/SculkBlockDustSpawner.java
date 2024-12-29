@@ -34,7 +34,7 @@ public class SculkBlockDustSpawner {
 //				.setLifetime(100 + random.nextInt(50))
 //				.setMotion(0f, 0.01f + random.nextFloat() * .01f, 0f)
 //				.setRenderType(bright ? LodestoneWorldParticleRenderType.ADDITIVE : ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT)
-//				.spawn(world, pos.getX() + .5f + random.nextGaussian() / 3f, pos.getY() + 0.975f, pos.getZ() + .5f + random.nextGaussian() / 3f);
+//				.spawn(world, pos.getX() + .5f + EffectiveUtils.getRandomFloatOrNegative(this.random) / 3f, pos.getY() + 0.975f, pos.getZ() + .5f + EffectiveUtils.getRandomFloatOrNegative(this.random) / 3f);
 		}
 	}
 }

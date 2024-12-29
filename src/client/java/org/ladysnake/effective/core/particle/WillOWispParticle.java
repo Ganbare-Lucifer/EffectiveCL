@@ -23,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
+import org.ladysnake.effective.core.utils.EffectiveUtils;
 import org.ladysnake.effective.cosmetics.render.entity.model.pet.WillOWispModel;
 
 import java.util.List;
@@ -71,7 +72,7 @@ public class WillOWispParticle extends Particle {
 	@Override
 	public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
 		if (this.world.getBlockState(BlockPos.ofFloored(this.x, this.y, this.z)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
-			this.world.addParticle(ParticleTypes.SOUL, this.x + random.nextGaussian() / 10, this.y + random.nextGaussian() / 10, this.z + random.nextGaussian() / 10, random.nextGaussian() / 20, random.nextGaussian() / 20, random.nextGaussian() / 20);
+			this.world.addParticle(ParticleTypes.SOUL, this.x + EffectiveUtils.getRandomFloatOrNegative(this.random) / 10, this.y + EffectiveUtils.getRandomFloatOrNegative(this.random) / 10, this.z + EffectiveUtils.getRandomFloatOrNegative(this.random) / 10, EffectiveUtils.getRandomFloatOrNegative(this.random) / 20, EffectiveUtils.getRandomFloatOrNegative(this.random) / 20, EffectiveUtils.getRandomFloatOrNegative(this.random) / 20);
 		} else {
 			float x = (float) (MathHelper.lerp(tickDelta, this.prevPosX, this.x));
 			float y = (float) (MathHelper.lerp(tickDelta, this.prevPosY, this.y));
@@ -80,7 +81,7 @@ public class WillOWispParticle extends Particle {
 			for (int i = 0; i < 2; i++) {
 //				WorldParticleBuilder.create(Effective.WISP)
 //					.enableForcedSpawn()
-//					.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
+//					.setSpinData(SpinParticleData.create((float) (this.world.EffectiveUtils.getRandomFloatOrNegative(this.random) / 5f)).build())
 //					.setScaleData(
 //						GenericParticleData.create(this instanceof PlayerWispParticle ? 0.16f : 0.25f, 0f)
 //							.setEasing(Easing.CIRC_OUT)
@@ -95,12 +96,12 @@ public class WillOWispParticle extends Particle {
 //					.setMotion(0, 0.066f, 0)
 //					.enableNoClip()
 //					.setLifetime(40)
-//					.spawn(this.world, x + random.nextGaussian() / 20f, y + random.nextGaussian() / 20f, z + random.nextGaussian() / 20f);
+//					.spawn(this.world, x + EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f, y + EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f, z + EffectiveUtils.getRandomFloatOrNegative(this.random) / 20f);
 			}
 
 //			WorldParticleBuilder.create(Effective.WISP)
 //				.enableForcedSpawn()
-//				.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
+//				.setSpinData(SpinParticleData.create((float) (this.world.EffectiveUtils.getRandomFloatOrNegative(this.random) / 5f)).build())
 //				.setScaleData(GenericParticleData.create(this instanceof PlayerWispParticle ? 0.10f : 0.15f).build())
 //				.setTransparencyData(GenericParticleData.create(0.2f, 0f).build())
 //				.setColorData(ColorParticleData.create(new Color(0xFFFFFF), new Color(0xFFFFFF)).build())
@@ -127,7 +128,7 @@ public class WillOWispParticle extends Particle {
 			for (int i = 0; i < 50; i++) {
 //				WorldParticleBuilder.create(Effective.WISP)
 //					.enableForcedSpawn()
-//					.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
+//					.setSpinData(SpinParticleData.create((float) (this.world.EffectiveUtils.getRandomFloatOrNegative(this.random) / 5f)).build())
 //					.setScaleData(GenericParticleData.create(0.25f, 0f).setEasing(Easing.CIRC_OUT).build())
 //					.setTransparencyData(GenericParticleData.create(1f).build())
 //					.setColorData(
@@ -136,12 +137,12 @@ public class WillOWispParticle extends Particle {
 //							.build()
 //					)
 //					.setMotion(
-//						new Vector3f((float) (random.nextGaussian() / 10f), (float) (random.nextGaussian() / 10f), (float) (random.nextGaussian() / 10f))
+//						new Vector3f((float) (EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f), (float) (EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f), (float) (EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f))
 //					)
 //					.enableNoClip()
 //					.setLifetime(20)
 //					.repeat(this.world, x, y, z, 3);
-				this.world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.SOUL_SAND.getDefaultState()), this.x + random.nextGaussian() / 10, this.y + random.nextGaussian() / 10, this.z + random.nextGaussian() / 10, random.nextGaussian() / 20, random.nextGaussian() / 20, random.nextGaussian() / 20);
+				this.world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.SOUL_SAND.getDefaultState()), this.x + EffectiveUtils.getRandomFloatOrNegative(this.random) / 10, this.y + EffectiveUtils.getRandomFloatOrNegative(this.random) / 10, this.z + EffectiveUtils.getRandomFloatOrNegative(this.random) / 10, EffectiveUtils.getRandomFloatOrNegative(this.random) / 20, EffectiveUtils.getRandomFloatOrNegative(this.random) / 20, EffectiveUtils.getRandomFloatOrNegative(this.random) / 20);
 			}
 
 			this.world.playSound(bp.getX(), bp.getY(), bp.getZ(), SoundEvents.PARTICLE_SOUL_ESCAPE.value(), SoundCategory.AMBIENT, 1.0f, 1.5f, true);
@@ -225,9 +226,9 @@ public class WillOWispParticle extends Particle {
 
 	private void selectBlockTarget() {
 		// Behaviour
-		this.xTarget = this.x + random.nextGaussian() * 10;
-		this.yTarget = this.y + random.nextGaussian() * 10;
-		this.zTarget = this.z + random.nextGaussian() * 10;
+		this.xTarget = this.x + EffectiveUtils.getRandomFloatOrNegative(this.random) * 10;
+		this.yTarget = this.y + EffectiveUtils.getRandomFloatOrNegative(this.random) * 10;
+		this.zTarget = this.z + EffectiveUtils.getRandomFloatOrNegative(this.random) * 10;
 
 		BlockPos targetPos = BlockPos.ofFloored(this.xTarget, this.yTarget, this.zTarget);
 		if (this.world.getBlockState(targetPos).isFullCube(world, targetPos) && !this.world.getBlockState(targetPos).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
@@ -240,7 +241,7 @@ public class WillOWispParticle extends Particle {
 	}
 
 
-	public static class DefaultFactory implements ParticleFactory<SimpleParticleType> {
+	public static class Factory implements ParticleFactory<SimpleParticleType> {
 		private final Identifier texture;
 		private final float red;
 		private final float green;
@@ -249,7 +250,7 @@ public class WillOWispParticle extends Particle {
 		private final float toGreen;
 		private final float toBlue;
 
-		public DefaultFactory(SpriteProvider spriteProvider, Identifier texture, float red, float green, float blue, float toRed, float toGreen, float toBlue) {
+		public Factory(SpriteProvider spriteProvider, Identifier texture, float red, float green, float blue, float toRed, float toGreen, float toBlue) {
 			this.texture = texture;
 			this.red = red;
 			this.green = green;

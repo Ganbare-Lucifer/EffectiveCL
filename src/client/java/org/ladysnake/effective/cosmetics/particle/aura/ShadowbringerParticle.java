@@ -8,6 +8,7 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.BlockPos;
 import org.ladysnake.effective.core.particle.ChorusPetalParticle;
+import org.ladysnake.effective.core.utils.EffectiveUtils;
 
 public class ShadowbringerParticle extends ChorusPetalParticle {
 
@@ -20,9 +21,9 @@ public class ShadowbringerParticle extends ChorusPetalParticle {
 
 		this.maxAge = 40 + random.nextInt(40);
 		this.velocityY = (0.2 + random.nextFloat()) / 10;
-		this.velocityX = negateX ? -random.nextGaussian() / 50 : random.nextGaussian() / 50;
-		this.velocityZ = negateZ ? -random.nextGaussian() / 50 : random.nextGaussian() / 50;
-		this.scale = (float) (scale + (random.nextGaussian() / 12.0));
+		this.velocityX = negateX ? -EffectiveUtils.getRandomFloatOrNegative(this.random) / 50 : EffectiveUtils.getRandomFloatOrNegative(this.random) / 50;
+		this.velocityZ = negateZ ? -EffectiveUtils.getRandomFloatOrNegative(this.random) / 50 : EffectiveUtils.getRandomFloatOrNegative(this.random) / 50;
+		this.scale = (float) (scale + (EffectiveUtils.getRandomFloatOrNegative(this.random) / 12.0));
 		this.spriteProvider = spriteProvider;
 
 		this.setSprite(spriteProvider.getSprite(0, 3));

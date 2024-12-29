@@ -50,7 +50,7 @@ public class RippleAndFlowingWaterSplashesSpawner {
 		if (shouldSplash(world, pos.up())) {
 			Vec3d vec3d = state.getVelocity(world, pos);
 			for (int i = 0; i <= random.nextInt(EffectiveConfig.flowingWaterSplashingDensity); i++) {
-				world.addParticle(ParticleTypes.SPLASH, pos.getX() + .5 + random.nextGaussian() / 2f, pos.getY() + 1 + random.nextFloat(), pos.getZ() + .5 + random.nextGaussian() / 2f, vec3d.getX() * random.nextFloat(), random.nextFloat() / 10f, vec3d.getZ() * random.nextFloat());
+				world.addParticle(ParticleTypes.SPLASH, pos.getX() + .5 + EffectiveUtils.getRandomFloatOrNegative(random) / 2f, pos.getY() + 1 + random.nextFloat(), pos.getZ() + .5 + EffectiveUtils.getRandomFloatOrNegative(random) / 2f, vec3d.getX() * random.nextFloat(), random.nextFloat() / 10f, vec3d.getZ() * random.nextFloat());
 			}
 		}
 
