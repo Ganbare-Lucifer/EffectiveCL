@@ -2,8 +2,8 @@ package org.ladysnake.effective.cosmetics.particle.type;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.SimpleParticleType;
 import org.ladysnake.effective.cosmetics.particle.contracts.FireflyParticleInitialData;
 
 @Environment(EnvType.CLIENT)

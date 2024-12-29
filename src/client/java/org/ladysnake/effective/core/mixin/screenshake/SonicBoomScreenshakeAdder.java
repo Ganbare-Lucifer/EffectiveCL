@@ -9,10 +9,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import team.lodestar.lodestone.handlers.ScreenshakeHandler;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.screenshake.PositionedScreenshakeInstance;
-import team.lodestar.lodestone.systems.screenshake.ScreenshakeInstance;
 
 @Mixin(SonicBoomTask.class)
 public class SonicBoomScreenshakeAdder {
@@ -20,14 +16,14 @@ public class SonicBoomScreenshakeAdder {
 	protected void keepRunning(ServerWorld serverWorld, WardenEntity wardenEntity, long l, CallbackInfo ci) {
 		if (EffectiveConfig.sonicBoomScreenShake && !wardenEntity.getBrain().hasMemoryModule(MemoryModuleType.SONIC_BOOM_SOUND_DELAY)
 			&& !wardenEntity.getBrain().hasMemoryModule(MemoryModuleType.SONIC_BOOM_SOUND_COOLDOWN)) {
-			wardenEntity.getBrain()
-				.getOptionalMemory(MemoryModuleType.ATTACK_TARGET)
-				.filter(wardenEntity::isValidTarget)
-				.filter(livingEntity -> wardenEntity.isInRange(livingEntity, 15.0, 20.0))
-				.ifPresent(livingEntity -> {
-					ScreenshakeInstance boomScreenShake = new PositionedScreenshakeInstance(20, wardenEntity.getPos(), 20f, 25f, Easing.CIRC_IN_OUT).setIntensity(EffectiveConfig.screenShakeIntensity, 0.0f, 0.0f);
-					ScreenshakeHandler.addScreenshake(boomScreenShake);
-				});
+//			wardenEntity.getBrain()
+//				.getOptionalMemory(MemoryModuleType.ATTACK_TARGET)
+//				.filter(wardenEntity::isValidTarget)
+//				.filter(livingEntity -> wardenEntity.isInRange(livingEntity, 15.0, 20.0))
+//				.ifPresent(livingEntity -> {
+//					ScreenshakeInstance boomScreenShake = new PositionedScreenshakeInstance(20, wardenEntity.getPos(), 20f, 25f, Easing.CIRC_IN_OUT).setIntensity(EffectiveConfig.screenShakeIntensity, 0.0f, 0.0f);
+//					ScreenshakeHandler.addScreenshake(boomScreenShake);
+//				});
 		}
 	}
 }

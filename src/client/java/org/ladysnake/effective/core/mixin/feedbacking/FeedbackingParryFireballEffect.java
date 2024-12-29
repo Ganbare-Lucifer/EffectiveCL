@@ -4,7 +4,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
-import net.minecraft.sound.SoundCategory;
 import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.EffectiveConfig;
 import org.spongepowered.asm.mixin.Mixin;

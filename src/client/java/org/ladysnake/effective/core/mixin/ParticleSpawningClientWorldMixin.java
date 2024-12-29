@@ -18,9 +18,6 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.dimension.DimensionType;
 import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.EffectiveConfig;
-import org.ladysnake.effective.core.particle.FireflyParticle;
-import org.ladysnake.effective.core.settings.SpawnSettings;
-import org.ladysnake.effective.core.settings.data.FireflySpawnSetting;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,14 +25,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
 @Mixin(ClientWorld.class)
@@ -57,27 +49,27 @@ public abstract class ParticleSpawningClientWorldMixin extends World {
 
 		// FIREFLIES
 		if (EffectiveConfig.fireflyDensity > 0) {
-			FireflySpawnSetting fireflySpawnSetting = SpawnSettings.FIREFLIES.get(biome.getKey().get());
-			if (fireflySpawnSetting != null) {
-				if (random.nextFloat() * 250f <= fireflySpawnSetting.spawnChance() * EffectiveConfig.fireflyDensity && pos.getY() > this.getSeaLevel()) {
-					for (int y = this.getSeaLevel(); y <= this.getSeaLevel() * 2; y++) {
-						pos.setY(y);
-						pos2.setY(y-1);
-						boolean canSpawnFirefly = FireflyParticle.canFlyThroughBlock(this, pos, this.getBlockState(pos)) && !FireflyParticle.canFlyThroughBlock(this, pos2, this.getBlockState(pos2));
-
-						if (canSpawnFirefly) {
-							WorldParticleBuilder.create(Effective.FIREFLY)
-								.enableForcedSpawn()
-								.setColorData(ColorParticleData.create(fireflySpawnSetting.color(), fireflySpawnSetting.color()).build())
-								.setScaleData(GenericParticleData.create(0.05f + random.nextFloat() * 0.10f).build())
-								.setLifetime(ThreadLocalRandom.current().nextInt(40, 120))
-								.setRenderType(LodestoneWorldParticleRenderType.ADDITIVE)
-								.spawn(this, pos.getX() + random.nextFloat(), pos.getY() + random.nextFloat() * 5f, pos.getZ() + random.nextFloat());
-							break;
-						}
-					}
-				}
-			}
+//			FireflySpawnSetting fireflySpawnSetting = SpawnSettings.FIREFLIES.get(biome.getKey().get());
+//			if (fireflySpawnSetting != null) {
+//				if (random.nextFloat() * 250f <= fireflySpawnSetting.spawnChance() * EffectiveConfig.fireflyDensity && pos.getY() > this.getSeaLevel()) {
+//					for (int y = this.getSeaLevel(); y <= this.getSeaLevel() * 2; y++) {
+//						pos.setY(y);
+//						pos2.setY(y-1);
+//						boolean canSpawnFirefly = FireflyParticle.canFlyThroughBlock(this, pos, this.getBlockState(pos)) && !FireflyParticle.canFlyThroughBlock(this, pos2, this.getBlockState(pos2));
+//
+//						if (canSpawnFirefly) {
+//							WorldParticleBuilder.create(Effective.FIREFLY)
+//								.enableForcedSpawn()
+//								.setColorData(ColorParticleData.create(fireflySpawnSetting.color(), fireflySpawnSetting.color()).build())
+//								.setScaleData(GenericParticleData.create(0.05f + random.nextFloat() * 0.10f).build())
+//								.setLifetime(ThreadLocalRandom.current().nextInt(40, 120))
+//								.setRenderType(LodestoneWorldParticleRenderType.ADDITIVE)
+//								.spawn(this, pos.getX() + random.nextFloat(), pos.getY() + random.nextFloat() * 5f, pos.getZ() + random.nextFloat());
+//							break;
+//						}
+//					}
+//				}
+//			}
 		}
 
 		pos = blockPos.add(MathHelper.floor(this.random.nextGaussian() * 50), MathHelper.floor(this.random.nextGaussian() * 25), MathHelper.floor(this.random.nextGaussian() * 50)).mutableCopy();

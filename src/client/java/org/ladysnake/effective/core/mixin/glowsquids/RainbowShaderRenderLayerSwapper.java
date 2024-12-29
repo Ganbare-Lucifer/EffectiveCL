@@ -22,7 +22,7 @@ public abstract class RainbowShaderRenderLayerSwapper {
 	private static boolean isRgb;
 
 	@Inject(method = "renderModel", at = @At("HEAD"))
-	private static <T extends LivingEntity> void captureEntity(EntityModel<T> model, Identifier texture, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float red, float green, float blue, CallbackInfo ci) {
+	private static <T extends LivingEntity> void captureEntity(EntityModel<T> model, Identifier texture, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, int i, CallbackInfo ci) {
 		isRgb = entity instanceof GlowSquidEntity && entity.hasCustomName() && "jeb_".equals(entity.getName().getString());
 	}
 

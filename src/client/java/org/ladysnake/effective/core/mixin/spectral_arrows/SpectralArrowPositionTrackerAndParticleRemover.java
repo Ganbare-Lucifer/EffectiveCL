@@ -3,29 +3,21 @@ package org.ladysnake.effective.core.mixin.spectral_arrows;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.SpectralArrowEntity;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.ladysnake.effective.core.EffectiveConfig;
-import org.ladysnake.effective.core.utils.PositionTrackedEntity;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import team.lodestar.lodestone.systems.rendering.trail.TrailPoint;
-import team.lodestar.lodestone.systems.rendering.trail.TrailPointBuilder;
-
-import java.util.List;
 
 @Mixin(SpectralArrowEntity.class)
-public abstract class SpectralArrowPositionTrackerAndParticleRemover extends PersistentProjectileEntity implements PositionTrackedEntity {
-	@Unique
-	public final TrailPointBuilder trailPointBuilder = TrailPointBuilder.create(20);
+public abstract class SpectralArrowPositionTrackerAndParticleRemover extends PersistentProjectileEntity {
+//	@Unique
+//	public final TrailPointBuilder trailPointBuilder = TrailPointBuilder.create(20);
 
 	protected SpectralArrowPositionTrackerAndParticleRemover(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
 		super(entityType, world);
@@ -34,9 +26,9 @@ public abstract class SpectralArrowPositionTrackerAndParticleRemover extends Per
 	@Inject(method = "tick", at = @At("HEAD"))
 	public void tick(CallbackInfo ci) {
 		if (EffectiveConfig.spectralArrowTrails != EffectiveConfig.TrailOptions.NONE) {
-			Vec3d position = this.getCameraPosVec(MinecraftClient.getInstance().getRenderTime()).add(0, -.1f, 0f);
-			trailPointBuilder.addTrailPoint(position);
-			trailPointBuilder.tickTrailPoints();
+//			Vec3d position = this.getCameraPosVec(MinecraftClient.getInstance().getRenderTime()).add(0, -.1f, 0f);
+//			trailPointBuilder.addTrailPoint(position);
+//			trailPointBuilder.tickTrailPoints();
 		}
 	}
 
@@ -47,8 +39,8 @@ public abstract class SpectralArrowPositionTrackerAndParticleRemover extends Per
 		}
 	}
 
-	@Override
-	public List<TrailPoint> getPastPositions() {
-		return trailPointBuilder.getTrailPoints();
-	}
+//	@Override
+//	public List<TrailPoint> getPastPositions() {
+//		return trailPointBuilder.getTrailPoints();
+//	}
 }

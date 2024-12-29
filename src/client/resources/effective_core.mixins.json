@@ -8,8 +8,6 @@
   "client": [
     "ParticleSpawningClientWorldMixin",
     "RandomDisplayTickBlockMixin",
-    "allays.AllayPositionTracker",
-    "allays.AllayTrailRenderer",
     "allays.GoldenAllayTextureSwapper",
     "chest_bubbles.UnderwaterChestRandomOpener",
     "chest_bubbles.UnderwaterEnderChestRandomOpener",
@@ -18,7 +16,6 @@
     "choruspetals.BrokenChorusFlowerPetalSpawner",
     "choruspetals.ChorusPetalSpawner",
     "feedbacking.FeedbackingParryFireballEffect",
-    "feedbacking.ScreenParticleParryRenderEnforcer",
     "fireballs.DragonBreathRendererSwapper",
     "fireballs.DragonFireballRendererSwapper",
     "fireballs.FireballRendererSwapper",
@@ -42,8 +39,7 @@
     "water.RippleAndFlowingWaterSplashesSpawner",
     "water.WaterfallCloudSpawner",
     "water.WaterfallGeneratorAdder",
-    "water.WaterfallGeneratorTicker",
-    "water.integration.sodium.SodiumWaterfallGeneratorAdder"
+    "water.WaterfallGeneratorTicker"
   ],
   "injectors": {
     "defaultRequire": 1

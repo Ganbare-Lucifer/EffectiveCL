@@ -6,7 +6,8 @@ public class EffectiveConfig extends MidnightConfig {
 	/* VISUALS CATEGORY */
 	public static final String visuals = "visuals";
 
-	@Comment(category = visuals, centered = true) public static Comment waterEffects;
+	@Comment(category = visuals, centered = true)
+	public static Comment waterEffects;
 	@Entry(category = visuals)
 	public static boolean splashes = true;
 	@Entry(category = visuals, min = 0, max = 5, isSlider = true)
@@ -32,7 +33,8 @@ public class EffectiveConfig extends MidnightConfig {
 	@Entry(category = visuals)
 	public static ChestsOpenOptions underwaterChestsOpenRandomly = ChestsOpenOptions.ON_SOUL_SAND;
 
-	@Comment(category = visuals, centered = true) public static Comment entityEffects;
+	@Comment(category = visuals, centered = true)
+	public static Comment entityEffects;
 	@Entry(category = visuals)
 	public static GlowSquidHypnoOptions glowSquidHypnotize = GlowSquidHypnoOptions.ATTRACT;
 	@Entry(category = visuals)
@@ -40,7 +42,8 @@ public class EffectiveConfig extends MidnightConfig {
 	@Entry(category = visuals)
 	public static boolean goldenAllays = true;
 
-	@Comment(category = visuals, centered = true) public static Comment screenShakeEffects;
+	@Comment(category = visuals, centered = true)
+	public static Comment screenShakeEffects;
 	@Entry(category = visuals, min = 0, max = 5, isSlider = true)
 	public static float screenShakeIntensity = 1;
 	@Entry(category = visuals)
@@ -52,7 +55,8 @@ public class EffectiveConfig extends MidnightConfig {
 	@Entry(category = visuals)
 	public static boolean dragonScreenShake = true;
 
-	@Comment(category = visuals, centered = true) public static Comment illuminatedEffects;
+	@Comment(category = visuals, centered = true)
+	public static Comment illuminatedEffects;
 	@Entry(category = visuals, min = 0, max = 10, isSlider = true)
 	public static float fireflyDensity = 1;
 	@Entry(category = visuals, min = 0, max = 10, isSlider = true)
@@ -62,7 +66,8 @@ public class EffectiveConfig extends MidnightConfig {
 	@Entry(category = visuals)
 	public static EyesInTheDarkOptions eyesInTheDark = EyesInTheDarkOptions.HALLOWEEN;
 
-	@Comment(category = visuals, centered = true) public static Comment improvedEffects;
+	@Comment(category = visuals, centered = true)
+	public static Comment improvedEffects;
 	@Entry(category = visuals)
 	public static boolean improvedFireballs = true;
 	@Entry(category = visuals)
@@ -72,7 +77,8 @@ public class EffectiveConfig extends MidnightConfig {
 	@Entry(category = visuals)
 	public static TrailOptions spectralArrowTrails = TrailOptions.BOTH;
 
-	@Comment(category = visuals, centered = true) public static Comment miscellaneous;
+	@Comment(category = visuals, centered = true)
+	public static Comment miscellaneous;
 	@Entry(category = visuals, min = 0, max = 100, isSlider = true)
 	public static float sculkDustDensity = 100;
 	@Entry(category = visuals)
@@ -83,12 +89,14 @@ public class EffectiveConfig extends MidnightConfig {
 	/* AUDIO CATEGORY */
 	public static final String audio = "audio";
 
-	@Comment(category = audio, centered = true) public static Comment cascadeAudio;
+	@Comment(category = audio, centered = true)
+	public static Comment cascadeAudio;
 	@Entry(category = audio, min = 0, max = 100, isSlider = true)
 	public static int cascadeSoundsVolume = 30;
 	@Entry(category = audio, min = 0, max = 400, isSlider = true)
 	public static int cascadeSoundDistanceBlocks = 100;
-	@Comment(category = audio, centered = true) public static Comment biomeAmbience;
+	@Comment(category = audio, centered = true)
+	public static Comment biomeAmbience;
 	@Entry(category = audio, min = 0, max = 100, isSlider = true)
 	public static int windAmbienceVolume = 100;
 	@Entry(category = audio, min = 0, max = 100, isSlider = true)

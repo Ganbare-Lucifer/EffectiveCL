@@ -1,11 +1,5 @@
 package org.ladysnake.effective.core;
 
-import org.ladysnake.satin.api.event.EntitiesPreRenderCallback;
-import org.ladysnake.satin.api.event.ShaderEffectRenderCallback;
-import org.ladysnake.satin.api.managed.ManagedCoreShader;
-import org.ladysnake.satin.api.managed.ManagedShaderEffect;
-import org.ladysnake.satin.api.managed.ShaderEffectManager;
-import org.ladysnake.satin.api.managed.uniform.Uniform1f;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
@@ -27,13 +21,19 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.ladysnake.effective.core.gui.ParryScreen;
 import org.ladysnake.effective.core.particle.*;
-import org.ladysnake.effective.core.particle.types.*;
+import org.ladysnake.effective.core.particle.types.SplashParticleType;
 import org.ladysnake.effective.core.render.entity.model.SplashBottomModel;
 import org.ladysnake.effective.core.render.entity.model.SplashBottomRimModel;
 import org.ladysnake.effective.core.render.entity.model.SplashModel;
 import org.ladysnake.effective.core.render.entity.model.SplashRimModel;
 import org.ladysnake.effective.core.world.RenderedHypnotizingEntities;
 import org.ladysnake.effective.core.world.WaterfallCloudGenerators;
+import org.ladysnake.satin.api.event.EntitiesPreRenderCallback;
+import org.ladysnake.satin.api.event.ShaderEffectRenderCallback;
+import org.ladysnake.satin.api.managed.ManagedCoreShader;
+import org.ladysnake.satin.api.managed.ManagedShaderEffect;
+import org.ladysnake.satin.api.managed.ShaderEffectManager;
+import org.ladysnake.satin.api.managed.uniform.Uniform1f;
 
 public class Effective implements ClientModInitializer {
 	public static final String MODID = "effective";
@@ -56,20 +56,20 @@ public class Effective implements ClientModInitializer {
 	public static SplashParticleType GLOW_SPLASH;
 	public static SimpleParticleType GLOW_DROPLET;
 	public static SimpleParticleType GLOW_RIPPLE;
-	public static AllayTwinkleParticleType ALLAY_TWINKLE;
+	//	public static AllayTwinkleParticleType ALLAY_TWINKLE;
 	public static SimpleParticleType CHORUS_PETAL;
 	public static SimpleParticleType EYES;
 	public static SimpleParticleType WILL_O_WISP;
 
 	// lodestone particles
-	public static LodestoneWorldParticleType PIXEL = new LodestoneWorldParticleType();
-	public static LodestoneWorldParticleType WISP = new LodestoneWorldParticleType();
-	public static FlameParticleType FLAME = new FlameParticleType();
-	public static FlameParticleType DRAGON_BREATH = new FlameParticleType();
-	public static BubbleParticleType BUBBLE = new BubbleParticleType();
-	public static WaterfallCloudParticleType WATERFALL_CLOUD = new WaterfallCloudParticleType();
-	public static MistParticleType MIST = new MistParticleType();
-	public static FireflyParticleType FIREFLY = new FireflyParticleType();
+//	public static LodestoneWorldParticleType PIXEL = new LodestoneWorldParticleType();
+//	public static LodestoneWorldParticleType WISP = new LodestoneWorldParticleType();
+//	public static FlameParticleType FLAME = new FlameParticleType();
+//	public static FlameParticleType DRAGON_BREATH = new FlameParticleType();
+//	public static BubbleParticleType BUBBLE = new BubbleParticleType();
+//	public static WaterfallCloudParticleType WATERFALL_CLOUD = new WaterfallCloudParticleType();
+//	public static MistParticleType MIST = new MistParticleType();
+//	public static FireflyParticleType FIREFLY = new FireflyParticleType();
 	// sound events
 	public static SoundEvent AMBIENCE_WATERFALL = SoundEvent.of(Effective.id("ambience.waterfall"));
 	public static SoundEvent PARRY = SoundEvent.of(Effective.id("entity.parry"));
@@ -119,8 +119,8 @@ public class Effective implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(GLOW_DROPLET, GlowDropletParticle.DefaultFactory::new);
 		GLOW_RIPPLE = Registry.register(Registries.PARTICLE_TYPE, Effective.id("glow_ripple"), FabricParticleTypes.simple(true));
 		ParticleFactoryRegistry.getInstance().register(GLOW_RIPPLE, GlowRippleParticle.DefaultFactory::new);
-		ALLAY_TWINKLE = Registry.register(Registries.PARTICLE_TYPE, Effective.id("allay_twinkle"), new AllayTwinkleParticleType());
-		ParticleFactoryRegistry.getInstance().register(ALLAY_TWINKLE, AllayTwinkleParticleType.Factory::new);
+//		ALLAY_TWINKLE = Registry.register(Registries.PARTICLE_TYPE, Effective.id("allay_twinkle"), new AllayTwinkleParticleType());
+//		ParticleFactoryRegistry.getInstance().register(ALLAY_TWINKLE, AllayTwinkleParticleType.Factory::new);
 		CHORUS_PETAL = Registry.register(Registries.PARTICLE_TYPE, Effective.id("chorus_petal"), FabricParticleTypes.simple(true));
 		ParticleFactoryRegistry.getInstance().register(CHORUS_PETAL, ChorusPetalParticle.DefaultFactory::new);
 		EYES = Registry.register(Registries.PARTICLE_TYPE, Effective.id("eyes"), FabricParticleTypes.simple(true));
@@ -129,22 +129,22 @@ public class Effective implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(WILL_O_WISP, fabricSpriteProvider -> new WillOWispParticle.DefaultFactory(fabricSpriteProvider, Effective.id("textures/entity/will_o_wisp.png"), 0.1f, 0.75f, 1.0f, 0.0f, 0.1f, 1.0f));
 
 		// lodestone particles
-		ParticleFactoryRegistry.getInstance().register(PIXEL, LodestoneWorldParticleType.Factory::new);
-		PIXEL = Registry.register(Registries.PARTICLE_TYPE, Effective.id("pixel"), PIXEL);
-		ParticleFactoryRegistry.getInstance().register(WISP, LodestoneWorldParticleType.Factory::new);
-		WISP = Registry.register(Registries.PARTICLE_TYPE, Effective.id("wisp"), WISP);
-		ParticleFactoryRegistry.getInstance().register(FLAME, FlameParticleType.Factory::new);
-		FLAME = Registry.register(Registries.PARTICLE_TYPE, Effective.id("flame"), FLAME);
-		ParticleFactoryRegistry.getInstance().register(DRAGON_BREATH, FlameParticleType.Factory::new);
-		DRAGON_BREATH = Registry.register(Registries.PARTICLE_TYPE, Effective.id("dragon_breath"), DRAGON_BREATH);
-		ParticleFactoryRegistry.getInstance().register(BUBBLE, BubbleParticleType.Factory::new);
-		BUBBLE = Registry.register(Registries.PARTICLE_TYPE, Effective.id("bubble"), BUBBLE);
-		ParticleFactoryRegistry.getInstance().register(WATERFALL_CLOUD, WaterfallCloudParticleType.Factory::new);
-		WATERFALL_CLOUD = Registry.register(Registries.PARTICLE_TYPE, Effective.id("waterfall_cloud"), WATERFALL_CLOUD);
-		ParticleFactoryRegistry.getInstance().register(MIST, MistParticleType.Factory::new);
-		MIST = Registry.register(Registries.PARTICLE_TYPE, Effective.id("mist"), MIST);
-		ParticleFactoryRegistry.getInstance().register(FIREFLY, FireflyParticleType.Factory::new);
-		FIREFLY = Registry.register(Registries.PARTICLE_TYPE, Effective.id("firefly"), FIREFLY);
+//		ParticleFactoryRegistry.getInstance().register(PIXEL, LodestoneWorldParticleType.Factory::new);
+//		PIXEL = Registry.register(Registries.PARTICLE_TYPE, Effective.id("pixel"), PIXEL);
+//		ParticleFactoryRegistry.getInstance().register(WISP, LodestoneWorldParticleType.Factory::new);
+//		WISP = Registry.register(Registries.PARTICLE_TYPE, Effective.id("wisp"), WISP);
+//		ParticleFactoryRegistry.getInstance().register(FLAME, FlameParticleType.Factory::new);
+//		FLAME = Registry.register(Registries.PARTICLE_TYPE, Effective.id("flame"), FLAME);
+//		ParticleFactoryRegistry.getInstance().register(DRAGON_BREATH, FlameParticleType.Factory::new);
+//		DRAGON_BREATH = Registry.register(Registries.PARTICLE_TYPE, Effective.id("dragon_breath"), DRAGON_BREATH);
+//		ParticleFactoryRegistry.getInstance().register(BUBBLE, BubbleParticleType.Factory::new);
+//		BUBBLE = Registry.register(Registries.PARTICLE_TYPE, Effective.id("bubble"), BUBBLE);
+//		ParticleFactoryRegistry.getInstance().register(WATERFALL_CLOUD, WaterfallCloudParticleType.Factory::new);
+//		WATERFALL_CLOUD = Registry.register(Registries.PARTICLE_TYPE, Effective.id("waterfall_cloud"), WATERFALL_CLOUD);
+//		ParticleFactoryRegistry.getInstance().register(MIST, MistParticleType.Factory::new);
+//		MIST = Registry.register(Registries.PARTICLE_TYPE, Effective.id("mist"), MIST);
+//		ParticleFactoryRegistry.getInstance().register(FIREFLY, FireflyParticleType.Factory::new);
+//		FIREFLY = Registry.register(Registries.PARTICLE_TYPE, Effective.id("firefly"), FIREFLY);
 
 		// sound events
 		AMBIENCE_WATERFALL = Registry.register(Registries.SOUND_EVENT, AMBIENCE_WATERFALL.getId(), AMBIENCE_WATERFALL);

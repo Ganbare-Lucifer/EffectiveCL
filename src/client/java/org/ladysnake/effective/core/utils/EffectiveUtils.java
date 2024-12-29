@@ -1,9 +1,8 @@
 package org.ladysnake.effective.core.utils;
 
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
 import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -60,12 +59,12 @@ public class EffectiveUtils {
 		RIPPLE,
 	}
 
-	public static final boolean isInCave(World world, BlockPos pos) {
+	public static boolean isInCave(World world, BlockPos pos) {
 		return pos.getY() < world.getSeaLevel() && EffectiveUtils.hasStoneAbove(world, pos);
 	}
 
-	public static final boolean isInOverworld(World world, BlockPos pos) {
-		return world.getBiome(pos).isIn(ConventionalBiomeTags.IN_OVERWORLD);
+	public static boolean isInOverworld(World world, BlockPos pos) {
+		return world.getBiome(pos).isIn(ConventionalBiomeTags.IS_OVERWORLD);
 	}
 
 	// method to check if the player has a stone material type block above them, more reliable to detect caves compared to isSkyVisible

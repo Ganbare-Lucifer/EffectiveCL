@@ -5,24 +5,14 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.LidOpenable;
 import net.minecraft.block.enums.ChestType;
-import net.minecraft.client.particle.ParticleTextureSheet;
-import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.joml.Vector3f;
-import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.EffectiveConfig;
-import org.ladysnake.effective.core.utils.LinearForcedMotionImpl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-
-import java.awt.*;
 
 @Mixin(ChestBlockEntity.class)
 public class UnderwaterOpenChestBubbleSpawner<T extends BlockEntity & LidOpenable> {
@@ -97,52 +87,52 @@ public class UnderwaterOpenChestBubbleSpawner<T extends BlockEntity & LidOpenabl
 	}
 
 	private static void spawnBubble(World world, float x, float y, float z, boolean endChest) {
-		float bubbleSize = .05f + world.random.nextFloat() * .05f;
-		WorldParticleBuilder.create(Effective.BUBBLE)
-			.enableForcedSpawn()
-			.setLightLevel(endChest ? LightmapTextureManager.MAX_LIGHT_COORDINATE : -1)
-			.setScaleData(GenericParticleData.create(bubbleSize).build())
-			.setTransparencyData(GenericParticleData.create(1f).build())
-			.enableNoClip()
-			.setLifetime(60 + world.random.nextInt(60))
-			.setMotion(0f, bubbleSize, 0f)
-			.setRenderType(ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT)
-			.setColorData(ColorParticleData.create(new Color(endChest ? 0x00FF90 : 0xFFFFFF), new Color(endChest ? 0x00FF90 : 0xFFFFFF)).build())
-			.spawn(world, x, y, z);
+//		float bubbleSize = .05f + world.random.nextFloat() * .05f;
+//		WorldParticleBuilder.create(Effective.BUBBLE)
+//			.enableForcedSpawn()
+//			.setLightLevel(endChest ? LightmapTextureManager.MAX_LIGHT_COORDINATE : -1)
+//			.setScaleData(GenericParticleData.create(bubbleSize).build())
+//			.setTransparencyData(GenericParticleData.create(1f).build())
+//			.enableNoClip()
+//			.setLifetime(60 + world.random.nextInt(60))
+//			.setMotion(0f, bubbleSize, 0f)
+//			.setRenderType(ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT)
+//			.setColorData(ColorParticleData.create(new Color(endChest ? 0x00FF90 : 0xFFFFFF), new Color(endChest ? 0x00FF90 : 0xFFFFFF)).build())
+//			.spawn(world, x, y, z);
 	}
 
 	private static void spawnClosingBubble(World world, float x, float y, float z, Direction direction, boolean doubleChest, boolean endChest) {
-		for (int i = 0; i < (doubleChest ? 10 : 5); i++) {
-			float velX = .5f;
-			float velZ = .5f;
-			if (direction == Direction.NORTH) {
-				velX = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
-				velZ = -.05f - (world.random.nextFloat() / 5f);
-			} else if (direction == Direction.SOUTH) {
-				velX = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
-				velZ = .05f + (world.random.nextFloat() / 5f);
-			} else if (direction == Direction.EAST) {
-				velX = .05f + (world.random.nextFloat() / 5f);
-				velZ = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
-			} else if (direction == Direction.WEST) {
-				velX = -.05f - (world.random.nextFloat() / 5f);
-				velZ = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
-			}
-			WorldParticleBuilder.create(Effective.BUBBLE)
-				.enableForcedSpawn()
-				.setLightLevel(endChest ? LightmapTextureManager.MAX_LIGHT_COORDINATE : -1)
-				.setScaleData(GenericParticleData.create(.05f + world.random.nextFloat() * .05f).build())
-				.setTransparencyData(GenericParticleData.create(1f).build())
-				.enableNoClip()
-				.setLifetime(60 + world.random.nextInt(60))
-				.addTickActor(new LinearForcedMotionImpl(
-					new Vector3f(velX, .1f - (world.random.nextFloat() * .1f), velZ),
-					new Vector3f(0f, .1f, 0f),
-					10f
-				))
-				.setRenderType(ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT)
-				.setColorData(ColorParticleData.create(new Color(endChest ? 0x00FF90 : 0xFFFFFF), new Color(endChest ? 0x00FF90 : 0xFFFFFF)).build())
-				.spawn(world, x, y, z);
-		}
+//		for (int i = 0; i < (doubleChest ? 10 : 5); i++) {
+//			float velX = .5f;
+//			float velZ = .5f;
+//			if (direction == Direction.NORTH) {
+//				velX = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
+//				velZ = -.05f - (world.random.nextFloat() / 5f);
+//			} else if (direction == Direction.SOUTH) {
+//				velX = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
+//				velZ = .05f + (world.random.nextFloat() / 5f);
+//			} else if (direction == Direction.EAST) {
+//				velX = .05f + (world.random.nextFloat() / 5f);
+//				velZ = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
+//			} else if (direction == Direction.WEST) {
+//				velX = -.05f - (world.random.nextFloat() / 5f);
+//				velZ = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
+//			}
+//			WorldParticleBuilder.create(Effective.BUBBLE)
+//				.enableForcedSpawn()
+//				.setLightLevel(endChest ? LightmapTextureManager.MAX_LIGHT_COORDINATE : -1)
+//				.setScaleData(GenericParticleData.create(.05f + world.random.nextFloat() * .05f).build())
+//				.setTransparencyData(GenericParticleData.create(1f).build())
+//				.enableNoClip()
+//				.setLifetime(60 + world.random.nextInt(60))
+//				.addTickActor(new LinearForcedMotionImpl(
+//					new Vector3f(velX, .1f - (world.random.nextFloat() * .1f), velZ),
+//					new Vector3f(0f, .1f, 0f),
+//					10f
+//				))
+//				.setRenderType(ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT)
+//				.setColorData(ColorParticleData.create(new Color(endChest ? 0x00FF90 : 0xFFFFFF), new Color(endChest ? 0x00FF90 : 0xFFFFFF)).build())
+//				.spawn(world, x, y, z);
+//		}
 	}
 }

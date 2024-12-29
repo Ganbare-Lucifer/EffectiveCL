@@ -13,8 +13,8 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -23,17 +23,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
-import org.ladysnake.effective.core.Effective;
-import org.ladysnake.effective.cosmetics.particle.pet.PlayerWispParticle;
 import org.ladysnake.effective.cosmetics.render.entity.model.pet.WillOWispModel;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 
-import java.awt.*;
 import java.util.List;
 
 public class WillOWispParticle extends Particle {
@@ -87,36 +78,36 @@ public class WillOWispParticle extends Particle {
 			float z = (float) (MathHelper.lerp(tickDelta, this.prevPosZ, this.z));
 
 			for (int i = 0; i < 2; i++) {
-				WorldParticleBuilder.create(Effective.WISP)
-					.enableForcedSpawn()
-					.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
-					.setScaleData(
-						GenericParticleData.create(this instanceof PlayerWispParticle ? 0.16f : 0.25f, 0f)
-							.setEasing(Easing.CIRC_OUT)
-							.build()
-					)
-					.setTransparencyData(GenericParticleData.create(1f).build())
-					.setColorData(
-						ColorParticleData.create(new Color(this.red, this.green, this.blue), new Color(this.gotoRed, this.gotoGreen, this.gotoBlue))
-							.setEasing(Easing.CIRC_OUT)
-							.build()
-					)
-					.setMotion(0, 0.066f, 0)
-					.enableNoClip()
-					.setLifetime(40)
-					.spawn(this.world, x + random.nextGaussian() / 20f, y + random.nextGaussian() / 20f, z + random.nextGaussian() / 20f);
+//				WorldParticleBuilder.create(Effective.WISP)
+//					.enableForcedSpawn()
+//					.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
+//					.setScaleData(
+//						GenericParticleData.create(this instanceof PlayerWispParticle ? 0.16f : 0.25f, 0f)
+//							.setEasing(Easing.CIRC_OUT)
+//							.build()
+//					)
+//					.setTransparencyData(GenericParticleData.create(1f).build())
+//					.setColorData(
+//						ColorParticleData.create(new Color(this.red, this.green, this.blue), new Color(this.gotoRed, this.gotoGreen, this.gotoBlue))
+//							.setEasing(Easing.CIRC_OUT)
+//							.build()
+//					)
+//					.setMotion(0, 0.066f, 0)
+//					.enableNoClip()
+//					.setLifetime(40)
+//					.spawn(this.world, x + random.nextGaussian() / 20f, y + random.nextGaussian() / 20f, z + random.nextGaussian() / 20f);
 			}
 
-			WorldParticleBuilder.create(Effective.WISP)
-				.enableForcedSpawn()
-				.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
-				.setScaleData(GenericParticleData.create(this instanceof PlayerWispParticle ? 0.10f : 0.15f).build())
-				.setTransparencyData(GenericParticleData.create(0.2f, 0f).build())
-				.setColorData(ColorParticleData.create(new Color(0xFFFFFF), new Color(0xFFFFFF)).build())
-				.setMotion(0, 0.066f, 0)
-				.enableNoClip()
-				.setLifetime(3)
-				.spawn(this.world, x, y, z);
+//			WorldParticleBuilder.create(Effective.WISP)
+//				.enableForcedSpawn()
+//				.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
+//				.setScaleData(GenericParticleData.create(this instanceof PlayerWispParticle ? 0.10f : 0.15f).build())
+//				.setTransparencyData(GenericParticleData.create(0.2f, 0f).build())
+//				.setColorData(ColorParticleData.create(new Color(0xFFFFFF), new Color(0xFFFFFF)).build())
+//				.setMotion(0, 0.066f, 0)
+//				.enableNoClip()
+//				.setLifetime(3)
+//				.spawn(this.world, x, y, z);
 		}
 	}
 
@@ -134,22 +125,22 @@ public class WillOWispParticle extends Particle {
 
 		if (this.age++ >= this.maxAge) {
 			for (int i = 0; i < 50; i++) {
-				WorldParticleBuilder.create(Effective.WISP)
-					.enableForcedSpawn()
-					.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
-					.setScaleData(GenericParticleData.create(0.25f, 0f).setEasing(Easing.CIRC_OUT).build())
-					.setTransparencyData(GenericParticleData.create(1f).build())
-					.setColorData(
-						ColorParticleData.create(new Color(this.red, this.green, this.blue), new Color(this.gotoRed, this.gotoGreen, this.gotoBlue))
-							.setEasing(Easing.CIRC_OUT)
-							.build()
-					)
-					.setMotion(
-						new Vector3f((float) (random.nextGaussian() / 10f), (float) (random.nextGaussian() / 10f), (float) (random.nextGaussian() / 10f))
-					)
-					.enableNoClip()
-					.setLifetime(20)
-					.repeat(this.world, x, y, z, 3);
+//				WorldParticleBuilder.create(Effective.WISP)
+//					.enableForcedSpawn()
+//					.setSpinData(SpinParticleData.create((float) (this.world.random.nextGaussian() / 5f)).build())
+//					.setScaleData(GenericParticleData.create(0.25f, 0f).setEasing(Easing.CIRC_OUT).build())
+//					.setTransparencyData(GenericParticleData.create(1f).build())
+//					.setColorData(
+//						ColorParticleData.create(new Color(this.red, this.green, this.blue), new Color(this.gotoRed, this.gotoGreen, this.gotoBlue))
+//							.setEasing(Easing.CIRC_OUT)
+//							.build()
+//					)
+//					.setMotion(
+//						new Vector3f((float) (random.nextGaussian() / 10f), (float) (random.nextGaussian() / 10f), (float) (random.nextGaussian() / 10f))
+//					)
+//					.enableNoClip()
+//					.setLifetime(20)
+//					.repeat(this.world, x, y, z, 3);
 				this.world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.SOUL_SAND.getDefaultState()), this.x + random.nextGaussian() / 10, this.y + random.nextGaussian() / 10, this.z + random.nextGaussian() / 10, random.nextGaussian() / 20, random.nextGaussian() / 20, random.nextGaussian() / 20);
 			}
 

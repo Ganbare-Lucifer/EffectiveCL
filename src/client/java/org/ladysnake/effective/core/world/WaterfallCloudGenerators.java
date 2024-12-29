@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -20,12 +19,6 @@ import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.EffectiveConfig;
 import org.ladysnake.effective.core.sound.WaterfallSoundInstance;
 import org.ladysnake.effective.core.utils.EffectiveUtils;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -155,52 +148,52 @@ public class WaterfallCloudGenerators {
 	}
 
 	public static void addWaterfallCloud(World world, Waterfall waterfall) {
-		boolean isGlowingWater = EffectiveUtils.isGlowingWater(world, waterfall.blockPos());
-		Color glowingWaterColor = EffectiveUtils.getGlowingWaterColor(world, waterfall.blockPos());
-		Color white = new Color(0xFFFFFF);
-		BlockPos blockPos = waterfall.blockPos();
-
-		for (int i = 0; i < EffectiveConfig.cascadeCloudDensity; i++) {
-			if (waterfall != null) {
-				double offsetX = world.getRandom().nextGaussian() / 5f;
-				double offsetZ = world.getRandom().nextGaussian() / 5f;
-
-				WorldParticleBuilder.create(Effective.WATERFALL_CLOUD)
-					.enableForcedSpawn()
-					.enableNoClip()
-					.setLightLevel(isGlowingWater ? LightmapTextureManager.MAX_LIGHT_COORDINATE : -1)
-					.setScaleData(GenericParticleData.create((0.4f + waterfall.strength() * world.random.nextFloat())).build())
-					.setColorData(ColorParticleData.create(isGlowingWater ? glowingWaterColor : white, isGlowingWater ? glowingWaterColor : white).build())
-					.setLifetime(10)
-					.setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT.withDepthFade())
-					.setMotion((world.getRandom().nextFloat() * waterfall.strength()) / 10f * Math.signum(offsetX), (world.getRandom().nextFloat() * waterfall.strength()) / 10f, (world.getRandom().nextFloat() * waterfall.strength()) / 10f * Math.signum(offsetZ))
-					.spawn(world, blockPos.getX() + .5 + offsetX, blockPos.getY() + world.getRandom().nextFloat(), blockPos.getZ() + .5 + offsetZ);
-			}
-		}
-
-		if (EffectiveConfig.cascadeMistDensity > 0f && waterfall.strength() >= 1.6f) {
-			if ((world.random.nextFloat() * 100f) <= EffectiveConfig.cascadeMistDensity) {
-				double offsetX = world.getRandom().nextGaussian() / 5f;
-				double offsetZ = world.getRandom().nextGaussian() / 5f;
-
-				WorldParticleBuilder.create(Effective.MIST)
-					.enableForcedSpawn()
-					.setSpinData(SpinParticleData.create((world.random.nextFloat() - world.random.nextFloat()) / 20f).build())
-					.setScaleData(GenericParticleData.create(10f + world.random.nextFloat() * 5f).build())
-					.setTransparencyData(
-						GenericParticleData.create(0.001f, 0.1f, 0f)
-							.setEasing(Easing.EXPO_OUT, Easing.SINE_OUT)
-							.build()
-					)
-					.setLifetime(300)
-					.enableNoClip()
-					.setNaturalLighting()
-					.setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT.withDepthFade())
-					.setColorData(ColorParticleData.create(waterfall.mistColor(), waterfall.mistColor()).build())
-					.setMotion(world.getRandom().nextFloat() / 15f * Math.signum(offsetX), world.getRandom().nextGaussian() / 25f, world.getRandom().nextFloat() / 15f * Math.signum(offsetZ))
-					.spawn(world, blockPos.getX() + .5f, blockPos.getY() + .5f, blockPos.getZ() + .5f);
-			}
-		}
+//		boolean isGlowingWater = EffectiveUtils.isGlowingWater(world, waterfall.blockPos());
+//		Color glowingWaterColor = EffectiveUtils.getGlowingWaterColor(world, waterfall.blockPos());
+//		Color white = new Color(0xFFFFFF);
+//		BlockPos blockPos = waterfall.blockPos();
+//
+//		for (int i = 0; i < EffectiveConfig.cascadeCloudDensity; i++) {
+//			if (waterfall != null) {
+//				double offsetX = world.getRandom().nextGaussian() / 5f;
+//				double offsetZ = world.getRandom().nextGaussian() / 5f;
+//
+//				WorldParticleBuilder.create(Effective.WATERFALL_CLOUD)
+//					.enableForcedSpawn()
+//					.enableNoClip()
+//					.setLightLevel(isGlowingWater ? LightmapTextureManager.MAX_LIGHT_COORDINATE : -1)
+//					.setScaleData(GenericParticleData.create((0.4f + waterfall.strength() * world.random.nextFloat())).build())
+//					.setColorData(ColorParticleData.create(isGlowingWater ? glowingWaterColor : white, isGlowingWater ? glowingWaterColor : white).build())
+//					.setLifetime(10)
+//					.setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT.withDepthFade())
+//					.setMotion((world.getRandom().nextFloat() * waterfall.strength()) / 10f * Math.signum(offsetX), (world.getRandom().nextFloat() * waterfall.strength()) / 10f, (world.getRandom().nextFloat() * waterfall.strength()) / 10f * Math.signum(offsetZ))
+//					.spawn(world, blockPos.getX() + .5 + offsetX, blockPos.getY() + world.getRandom().nextFloat(), blockPos.getZ() + .5 + offsetZ);
+//			}
+//		}
+//
+//		if (EffectiveConfig.cascadeMistDensity > 0f && waterfall.strength() >= 1.6f) {
+//			if ((world.random.nextFloat() * 100f) <= EffectiveConfig.cascadeMistDensity) {
+//				double offsetX = world.getRandom().nextGaussian() / 5f;
+//				double offsetZ = world.getRandom().nextGaussian() / 5f;
+//
+//				WorldParticleBuilder.create(Effective.MIST)
+//					.enableForcedSpawn()
+//					.setSpinData(SpinParticleData.create((world.random.nextFloat() - world.random.nextFloat()) / 20f).build())
+//					.setScaleData(GenericParticleData.create(10f + world.random.nextFloat() * 5f).build())
+//					.setTransparencyData(
+//						GenericParticleData.create(0.001f, 0.1f, 0f)
+//							.setEasing(Easing.EXPO_OUT, Easing.SINE_OUT)
+//							.build()
+//					)
+//					.setLifetime(300)
+//					.enableNoClip()
+//					.setNaturalLighting()
+//					.setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT.withDepthFade())
+//					.setColorData(ColorParticleData.create(waterfall.mistColor(), waterfall.mistColor()).build())
+//					.setMotion(world.getRandom().nextFloat() / 15f * Math.signum(offsetX), world.getRandom().nextGaussian() / 25f, world.getRandom().nextFloat() / 15f * Math.signum(offsetZ))
+//					.spawn(world, blockPos.getX() + .5f, blockPos.getY() + .5f, blockPos.getZ() + .5f);
+//			}
+//		}
 
 	}
 

@@ -8,10 +8,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import team.lodestar.lodestone.handlers.ScreenshakeHandler;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.screenshake.PositionedScreenshakeInstance;
-import team.lodestar.lodestone.systems.screenshake.ScreenshakeInstance;
 
 @Mixin(SittingAttackingPhase.class)
 public abstract class EnderDragonRoarScreenshakeAdder extends AbstractSittingPhase {
@@ -22,8 +18,8 @@ public abstract class EnderDragonRoarScreenshakeAdder extends AbstractSittingPha
 	@Inject(method = "clientTick", at = @At("HEAD"))
 	public void clientTick(CallbackInfo ci) {
 		if (EffectiveConfig.dragonScreenShake) {
-			ScreenshakeInstance roarScreenShake = new PositionedScreenshakeInstance(60, this.dragon.getPos(), 20f, 25f, Easing.CIRC_IN_OUT).setIntensity(0.0f, EffectiveConfig.screenShakeIntensity, 0.0f);
-			ScreenshakeHandler.addScreenshake(roarScreenShake);
+//			ScreenshakeInstance roarScreenShake = new PositionedScreenshakeInstance(60, this.dragon.getPos(), 20f, 25f, Easing.CIRC_IN_OUT).setIntensity(0.0f, EffectiveConfig.screenShakeIntensity, 0.0f);
+//			ScreenshakeHandler.addScreenshake(roarScreenShake);
 		}
 	}
 }

@@ -2,8 +2,8 @@ package org.ladysnake.effective.core.particle.types;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.SimpleParticleType;
 import org.ladysnake.effective.core.particle.contracts.SplashParticleInitialData;
 
 @Environment(EnvType.CLIENT)

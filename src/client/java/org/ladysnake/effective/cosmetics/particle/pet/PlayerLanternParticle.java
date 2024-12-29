@@ -6,7 +6,10 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.ParticleTextureSheet;
 import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.Camera;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.ai.TargetPredicate;
@@ -71,7 +74,7 @@ public class PlayerLanternParticle extends Particle {
 		VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
 		VertexConsumer vertexConsumer2 = immediate.getBuffer(GlowyRenderLayer.get(texture));
 		if (this.alpha > 0) {
-			this.model.render(matrixStack, vertexConsumer2, LightmapTextureManager.MAX_LIGHT_COORDINATE, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+//			this.model.render(matrixStack, vertexConsumer2, LightmapTextureManager.MAX_LIGHT_COORDINATE, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
 		}
 		immediate.draw();
 	}

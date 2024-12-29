@@ -10,7 +10,7 @@ public record AmbientCondition(SoundEvent event, Type type, AmbiencePredicate pr
 		boolean shouldPlay(World world, BlockPos pos, PlayerEntity player);
 	}
 
-	public static enum Type {
-		WIND, ANIMAL, FOLIAGE, WATER;
+	public enum Type {
+		WIND, ANIMAL, FOLIAGE, WATER
 	}
 }

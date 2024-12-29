@@ -2,10 +2,7 @@ package org.ladysnake.effective.core.gui;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.text.Text;
-
-import java.awt.*;
 
 public class ParryScreen extends Screen {
 	public ParryScreen() {

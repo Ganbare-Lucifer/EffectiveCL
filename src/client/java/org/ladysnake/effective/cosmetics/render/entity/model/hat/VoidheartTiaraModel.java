@@ -41,6 +41,7 @@ public class VoidheartTiaraModel extends OverheadModel {
 	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
 		head.render(matrices, vertices, light, overlay);
 	}
+
 	public void setRotationAngle(ModelPart bone, float x, float y, float z) {
 		bone.pitch = x;
 		bone.yaw = y;
