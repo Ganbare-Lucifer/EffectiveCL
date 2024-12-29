@@ -1,7 +1,26 @@
 ------------------------------------------------------
+Effective 2.4 (Alpha) - 1.21.1
+------------------------------------------------------
+As Effective is getting updated to 1.21 and beyond, the mod will move away from Lodestone to instead use Veil.
+As a result it requires a big rewrite, and instead of doing one big update, I figured I would do multiple alpha releases as I gradually work on it.
+
+- Replaced the Lodestone library with the Veil library
+- All the visual effects using Lodestone have been temporarily disabled until they get rewritten to use Veil. Temporarily removed:
+  - Chorus petals
+  - Will o' Wisps
+  - Allay trails
+  - Improved flames
+  - Improved dragon breath
+  - Underwater chest bubbles
+  - Waterfall clouds and mist
+  - Fireflies
+  - All screenshake effects
+- Rewrote splashes and glow splashes
+- Fixed inconsistencies with droplets sometimes appearing too far from the splash
+
+------------------------------------------------------
 Effective 2.3.2 - 1.20.1
 ------------------------------------------------------
-
 - Adjusted firefly spawning to be within 5 blocks off to the ground (instead of mostly in the sky like before)
 - Added a soft wind ambience to swamp biomes (eg. mangroves being hot made them have no background wind)
 - Added a unique mangrove bird ambience during the day
@@ -21,7 +40,6 @@ Effective 2.3.2 - 1.20.1
 ------------------------------------------------------
 Effective 2.3.1 - 1.20.1
 ------------------------------------------------------
-
 - Reworked all audio ambience to make it more dynamic. Different ambient effects will now stack on top of each other
   depending on the environment's properties.
     - Added bees in floral biomes during the day
@@ -55,7 +73,6 @@ Effective 2.3.1 - 1.20.1
 ------------------------------------------------------
 Effective 2.3 - 1.20.1
 ------------------------------------------------------
-
 - Added audio ambience!
     - Note: This feature is still early in development and some biomes might be missing. Please don't hesitate to give
       feedback on missing ambience and other requests on
@@ -75,13 +92,11 @@ Effective 2.3 - 1.20.1
 ------------------------------------------------------
 Effective 2.2.2.1 - 1.20.1
 ------------------------------------------------------
-
 - Made dark sculk dust properly respect environment lighting
 
 ------------------------------------------------------
 Effective 2.2.2 - 1.20.1
 ------------------------------------------------------
-
 - Ported to Fabric
 - Changed fireflies to only spawn above sea level
 - Slightly increased ripple particle size
@@ -95,7 +110,6 @@ Effective 2.2.2 - 1.20.1
 ------------------------------------------------------
 Effective 2.2.1 - 1.20.1
 ------------------------------------------------------
-
 - Added more config options for the splash effect, screen shake, and trails (thanks donkeyrat !)
 - Added a Dutch localization (thanks cph101 !)
 - Fixed a bug causing the accessibility onboard screen and the main menu fade-in to be skipped (thanks Ennui !)
@@ -115,13 +129,11 @@ Brought to you on 1.20.1 by the combined efforts of SzczurekYT and Motschen (big
 ------------------------------------------------------
 Effective 2.1.2 - 1.19.2
 ------------------------------------------------------
-
 - Updated Ukrainian localization thanks to unroman
 
 ------------------------------------------------------
 Effective 2.1.1 - 1.19.2
 ------------------------------------------------------
-
 - Added two new choices to the Allay trail option to either have trail only, twinkle only, both or none
 - Fixed rain ripples not being displayed at the correct position
 - Fixed broken chorus flowers spawning too few chorus petals
@@ -131,7 +143,6 @@ Effective 2.1.1 - 1.19.2
 ------------------------------------------------------
 Effective 2.1 - 1.19.2
 ------------------------------------------------------
-
 - Added the ability to make cascades silent
     - Placing wool under the receiving water source of the cascade now makes cascades silent
 - Added the ability to color cascade mist
@@ -145,7 +156,6 @@ Effective 2.1 - 1.19.2
 ------------------------------------------------------
 Effective 2.0 - 1.19.2
 ------------------------------------------------------
-
 - Rewrote the mod from scratch
 - Merged some Illuminations features into Effective. Here's a list of all the Illuminations features that made it in:
     - Added and improved Fireflies
@@ -187,7 +197,6 @@ Effective 2.0 - 1.19.2
 ------------------------------------------------------
 Effective 1.6 - 1.19.2
 ------------------------------------------------------
-
 - Added a screen shake effect for:
     - Wardens roaring
     - Wardens using their sonic boom attack
@@ -201,7 +210,6 @@ Effective 1.6 - 1.19.2
 ------------------------------------------------------
 Effective 1.5 - 1.19.2
 ------------------------------------------------------
-
 - Added Allay trails
     - Allay will now leave a colored trail and twinkles when flying around, inspired from the Minecraft Legends announce
       trailer
@@ -213,7 +221,6 @@ Effective 1.5 - 1.19.2
 ------------------------------------------------------
 Effective 1.4.1 - 1.19.2
 ------------------------------------------------------
-
 - Added glowing plankton waterfall clouds in warm oceans at night
 - Fixed splash rims looking incorrectly with Sodium
 - Waterfalls no longer play sound if the player cannot see them
@@ -223,7 +230,6 @@ Effective 1.4.1 - 1.19.2
 ------------------------------------------------------
 Effective 1.4 - 1.19.2
 ------------------------------------------------------
-
 - Hypnotizing glow squids
     - Glow squids can now hypnotize you, displaying a hypnotizing shader that gradually gets stronger the longer you
       look at them
@@ -237,7 +243,6 @@ Effective 1.4 - 1.19.2
 ------------------------------------------------------
 Effective 1.3 - 1.19.2
 ------------------------------------------------------
-
 - Overhauled splashes:
     - Splashes will now be colored depending on the water they originate from
     - Reworked the splash texture to be more fitting with the vanilla Minecraft aesthetic
@@ -257,13 +262,11 @@ Effective 1.3 - 1.19.2
 ------------------------------------------------------
 Effective 1.2.2 - 1.19
 ------------------------------------------------------
-
 - Updated to Minecraft 1.19
 
 ------------------------------------------------------
 Effective 1.2.1 - 1.18.2
 ------------------------------------------------------
-
 - Updated to Minecraft 1.18.2
 
 ------------------------------------------------------
@@ -285,7 +288,6 @@ Massive thanks to MoriyaShiine for most of these additions and changes!
 ------------------------------------------------------
 Effective 1.1.1 - 1.18.1
 ------------------------------------------------------
-
 - Fixed the first wave of splash particles being inverted
 - Made waterfall sound effects quieter yet still present far away from them
 - Removed lava splashes for now, as they were causing more issues than adding to the ambience
@@ -294,7 +296,6 @@ Effective 1.1.1 - 1.18.1
 ------------------------------------------------------
 Effective 1.1 - 1.18.1
 ------------------------------------------------------
-
 - Added two settings to enable or disable splashes and cascade effects available in the config file of your Minecraft
   instance config folder, thanks to devpelux
 - Implemented various optimizations and performance fixes, thanks to Sollace

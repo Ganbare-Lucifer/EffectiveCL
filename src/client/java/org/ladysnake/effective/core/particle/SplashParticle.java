@@ -12,12 +12,12 @@ import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.LightType;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 import org.ladysnake.effective.core.Effective;
@@ -124,14 +124,6 @@ public class SplashParticle extends Particle {
 		immediate.draw();
 	}
 
-	public int getRimBrightness(float tickDelta) {
-		return this.getBrightness(tickDelta);
-	}
-
-	public int getRimColor(BlockPos pos) {
-		return 0xFFFFFFFF;
-	}
-
 	private void drawSplash(int frame, Camera camera, float tickDelta) {
 		drawSplash(frame, camera, tickDelta, new Vector3f(1, 1, 1));
 	}
@@ -165,13 +157,25 @@ public class SplashParticle extends Particle {
 
 		if (this.age == 1) {
 			for (int i = 0; i < this.widthMultiplier * 10f; i++) {
-				this.world.addParticle(Effective.DROPLET, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f, random.nextFloat() / 10f + this.heightMultiplier / 2.8f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f);
+				this.world.addParticle(this::getDropletParticle, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f, random.nextFloat() / 10f + this.heightMultiplier / 2.8f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f);
 			}
 		} else if (this.age == wave2Start) {
 			for (int i = 0; i < this.widthMultiplier * 5f; i++) {
-				this.world.addParticle(Effective.DROPLET, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f, random.nextFloat() / 10f + this.heightMultiplier / 2.2f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f);
+				this.world.addParticle(this::getDropletParticle, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f, random.nextFloat() / 10f + this.heightMultiplier / 2.2f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f);
 			}
 		}
+	}
+
+	public int getRimBrightness(float tickDelta) {
+		return this.getBrightness(tickDelta);
+	}
+
+	public int getRimColor(BlockPos pos) {
+		return 0xFFFFFFFF;
+	}
+
+	public ParticleType<SimpleParticleType> getDropletParticle() {
+		return Effective.DROPLET;
 	}
 
 	@Environment(EnvType.CLIENT)

@@ -7,10 +7,12 @@ import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.*;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
 import org.jetbrains.annotations.Nullable;
+import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.particle.types.SplashParticleType;
 
 import java.awt.*;
@@ -29,6 +31,11 @@ public class GlowSplashParticle extends SplashParticle {
 	public int getRimColor(BlockPos pos) {
 		float redAndGreen = Math.min(1, world.getLightLevel(LightType.BLOCK, pos) / 15f);
 		return new Color(redAndGreen, redAndGreen, blue, 1.0f).getRGB();
+	}
+
+	@Override
+	public ParticleType<SimpleParticleType> getDropletParticle() {
+		return Effective.GLOW_DROPLET;
 	}
 
 	@Environment(EnvType.CLIENT)
