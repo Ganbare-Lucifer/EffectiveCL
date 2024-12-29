@@ -6,18 +6,12 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.LightmapTextureManager;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LightType;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
-import org.ladysnake.effective.core.Effective;
+import org.ladysnake.effective.core.index.EffectiveParticles;
 
 public class GlowDropletParticle extends DropletParticle {
 	public float redAndGreen = random.nextFloat() / 5f;
@@ -49,7 +43,7 @@ public class GlowDropletParticle extends DropletParticle {
 			for (int i = 0; i > -10; i--) {
 				BlockPos pos = BlockPos.ofFloored(this.x, Math.round(this.y) + i, this.z);
 				if (this.world.getBlockState(pos).getBlock() == Blocks.WATER && this.world.getBlockState(BlockPos.ofFloored(this.x, Math.round(this.y) + i, this.z)).getFluidState().isStill() && this.world.getBlockState(BlockPos.ofFloored(this.x, Math.round(this.y) + i + 1, this.z)).isAir()) {
-					this.world.addParticle(Effective.GLOW_RIPPLE, this.x, Math.round(this.y) + i + 0.9f, this.z, 0, 0, 0);
+					this.world.addParticle(EffectiveParticles.GLOW_RIPPLE, this.x, Math.round(this.y) + i + 0.9f, this.z, 0, 0, 0);
 					break;
 				}
 			}

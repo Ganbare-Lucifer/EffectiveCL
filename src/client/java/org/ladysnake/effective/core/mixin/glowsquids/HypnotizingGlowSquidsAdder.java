@@ -5,7 +5,6 @@ import net.minecraft.client.render.entity.SquidEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.GlowSquidEntity;
-import net.minecraft.entity.passive.SquidEntity;
 import org.ladysnake.effective.core.world.RenderedHypnotizingEntities;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

@@ -5,14 +5,15 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
 import org.jetbrains.annotations.Nullable;
-import org.ladysnake.effective.core.Effective;
+import org.ladysnake.effective.core.index.EffectiveParticles;
 import org.ladysnake.effective.core.particle.types.SplashParticleType;
 
 import java.awt.*;
@@ -34,13 +35,13 @@ public class GlowSplashParticle extends SplashParticle {
 	}
 
 	@Override
-	public ParticleType<SimpleParticleType> getDropletParticle() {
-		return Effective.GLOW_DROPLET;
+	public ParticleEffect getDropletParticle() {
+		return EffectiveParticles.GLOW_DROPLET;
 	}
 
 	@Environment(EnvType.CLIENT)
 	public static class Factory implements ParticleFactory<SimpleParticleType> {
-		public Factory(SpriteProvider spriteProvider) {
+		public Factory(SpriteProvider ignored) {
 		}
 
 		@Nullable

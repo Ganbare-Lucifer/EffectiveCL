@@ -4,17 +4,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.BlockPos;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
-import org.ladysnake.effective.core.Effective;
+import org.ladysnake.effective.core.index.EffectiveParticles;
 
 public class DropletParticle extends SpriteBillboardParticle {
-	private final SpriteProvider spriteProvider;
-
 	public DropletParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
 		super(world, x, y, z, velocityX, velocityY, velocityZ);
 
@@ -22,9 +17,9 @@ public class DropletParticle extends SpriteBillboardParticle {
 		this.velocityY = velocityY;
 		this.velocityZ = velocityZ;
 
-		this.spriteProvider = spriteProvider;
 		this.maxAge = 500;
 		this.scale = .05f;
+
 		this.setSpriteForAge(spriteProvider);
 	}
 
@@ -50,7 +45,7 @@ public class DropletParticle extends SpriteBillboardParticle {
 			for (int i = 0; i > -10; i--) {
 				BlockPos pos = BlockPos.ofFloored(this.x, Math.round(this.y) + i, this.z);
 				if (this.world.getBlockState(pos).getBlock() == Blocks.WATER && this.world.getBlockState(BlockPos.ofFloored(this.x, Math.round(this.y) + i, this.z)).getFluidState().isStill() && this.world.getBlockState(BlockPos.ofFloored(this.x, Math.round(this.y) + i + 1, this.z)).isAir()) {
-					this.world.addParticle(Effective.RIPPLE, this.x, Math.round(this.y) + i + 0.9f, this.z, 0, 0, 0);
+					this.world.addParticle(EffectiveParticles.RIPPLE, this.x, Math.round(this.y) + i + 0.9f, this.z, 0, 0, 0);
 					break;
 				}
 			}

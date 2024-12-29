@@ -25,7 +25,7 @@ Every effect is customisable and can be toggled in the configuration.
 
 ## Current features:
 ### Water effects:
-- Splashes, droplets and ripples when entities fall in water
+x Splashes, droplets and ripples when entities fall in water
 - Waterfall clouds
     - Appears when water flows into two block deep water source blocks / a water source above a wool block (to make it silent)
     - Can also be used on beaches to simulate waves crashing

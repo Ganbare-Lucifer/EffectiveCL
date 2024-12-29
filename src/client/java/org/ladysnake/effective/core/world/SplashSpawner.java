@@ -12,8 +12,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.EffectiveConfig;
+import org.ladysnake.effective.core.index.EffectiveParticles;
 import org.ladysnake.effective.core.particle.contracts.SplashParticleInitialData;
 import org.ladysnake.effective.core.particle.types.SplashParticleType;
 import org.ladysnake.effective.core.utils.EffectiveUtils;
@@ -90,7 +90,7 @@ public final class SplashSpawner {
 	 * Chooses between spawning a normal splash or glow splash depending on biome
 	 */
 	private static void spawnSplash(World world, double x, double y, double z, @Nullable SplashParticleInitialData data) {
-		SplashParticleType splash = EffectiveUtils.isGlowingWater(world, BlockPos.ofFloored(x, y, z)) ? Effective.GLOW_SPLASH : Effective.SPLASH;
+		SplashParticleType splash = EffectiveUtils.isGlowingWater(world, BlockPos.ofFloored(x, y, z)) ? EffectiveParticles.GLOW_SPLASH : EffectiveParticles.SPLASH;
 		world.addParticle(splash.setData(data), x, y, z, 0, 0, 0);
 	}
 }

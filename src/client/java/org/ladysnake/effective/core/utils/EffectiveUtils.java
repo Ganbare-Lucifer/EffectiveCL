@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
 import org.ladysnake.effective.core.Effective;
 import org.ladysnake.effective.core.EffectiveConfig;
+import org.ladysnake.effective.core.index.EffectiveParticles;
 
 import java.awt.*;
 
@@ -30,13 +31,13 @@ public class EffectiveUtils {
 	 */
 	public static void spawnWaterEffect(World world, Vec3d pos, double velocityX, double velocityY, double velocityZ, WaterEffectType waterEffect) {
 		SimpleParticleType particle = switch (waterEffect) {
-			case DROPLET -> Effective.DROPLET;
-			case RIPPLE -> Effective.RIPPLE;
+			case DROPLET -> EffectiveParticles.DROPLET;
+			case RIPPLE -> EffectiveParticles.RIPPLE;
 		};
 		if (isGlowingWater(world, pos)) {
 			particle = switch (waterEffect) {
-				case DROPLET -> Effective.GLOW_DROPLET;
-				case RIPPLE -> Effective.GLOW_RIPPLE;
+				case DROPLET -> EffectiveParticles.GLOW_DROPLET;
+				case RIPPLE -> EffectiveParticles.GLOW_RIPPLE;
 			};
 		}
 

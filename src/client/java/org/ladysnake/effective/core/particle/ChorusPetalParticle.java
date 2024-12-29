@@ -13,7 +13,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import org.ladysnake.effective.core.Effective;
+import org.ladysnake.effective.core.index.EffectiveParticles;
 
 import java.util.Random;
 
@@ -134,7 +134,7 @@ public class ChorusPetalParticle extends SpriteBillboardParticle {
 					for (int i = 0; i > -10; i--) {
 						BlockPos pos = BlockPos.ofFloored(this.x, Math.round(this.y) + i, this.z);
 						if (this.world.getBlockState(pos).getBlock() == Blocks.WATER && this.world.getBlockState(BlockPos.ofFloored(this.x, Math.round(this.y) + i, this.z)).getFluidState().isStill() && this.world.getBlockState(BlockPos.ofFloored(this.x, Math.round(this.y) + i + 1, this.z)).isAir()) {
-							this.world.addParticle(Effective.RIPPLE, this.x, Math.round(this.y) + i + 0.9f, this.z, 0, 0, 0);
+							this.world.addParticle(EffectiveParticles.RIPPLE, this.x, Math.round(this.y) + i + 0.9f, this.z, 0, 0, 0);
 							break;
 						}
 					}

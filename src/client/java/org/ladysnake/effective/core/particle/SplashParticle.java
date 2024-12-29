@@ -12,6 +12,7 @@ import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.Identifier;
@@ -21,6 +22,7 @@ import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 import org.ladysnake.effective.core.Effective;
+import org.ladysnake.effective.core.index.EffectiveParticles;
 import org.ladysnake.effective.core.particle.types.SplashParticleType;
 import org.ladysnake.effective.core.render.entity.model.SplashBottomModel;
 import org.ladysnake.effective.core.render.entity.model.SplashBottomRimModel;
@@ -157,11 +159,11 @@ public class SplashParticle extends Particle {
 
 		if (this.age == 1) {
 			for (int i = 0; i < this.widthMultiplier * 10f; i++) {
-				this.world.addParticle(this::getDropletParticle, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f, random.nextFloat() / 10f + this.heightMultiplier / 2.8f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f);
+				this.world.addParticle(this.getDropletParticle(), this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f, random.nextFloat() / 10f + this.heightMultiplier / 2.8f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 2.5f);
 			}
 		} else if (this.age == wave2Start) {
 			for (int i = 0; i < this.widthMultiplier * 5f; i++) {
-				this.world.addParticle(this::getDropletParticle, this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f, random.nextFloat() / 10f + this.heightMultiplier / 2.2f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f);
+				this.world.addParticle(this.getDropletParticle(), this.x + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), this.y, this.z + (EffectiveUtils.getRandomFloatOrNegative(this.random) * this.widthMultiplier / 10f * .5f), EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f, random.nextFloat() / 10f + this.heightMultiplier / 2.2f, EffectiveUtils.getRandomFloatOrNegative(this.random) / 10f * this.widthMultiplier / 5f);
 			}
 		}
 	}
@@ -174,13 +176,13 @@ public class SplashParticle extends Particle {
 		return 0xFFFFFFFF;
 	}
 
-	public ParticleType<SimpleParticleType> getDropletParticle() {
-		return Effective.DROPLET;
+	public ParticleEffect getDropletParticle() {
+		return EffectiveParticles.DROPLET;
 	}
 
 	@Environment(EnvType.CLIENT)
 	public static class Factory implements ParticleFactory<SimpleParticleType> {
-		public Factory(SpriteProvider spriteProvider) {
+		public Factory(SpriteProvider ignored) {
 		}
 
 		@Nullable
