@@ -1,0 +1,169 @@
+{
+  "sprite_data": {
+    "sprite": "spacemod:textures/particle/smoke.png",
+    "frame_count": 1,
+    "frame_width": 1,
+    "frame_height": 1,
+    "stretch_to_lifetime": true
+  },
+  "additive": false,
+  "render_style": "BILLBOARD",
+  "init_modules": [
+    {
+      "module": "initial_velocity",
+      "direction": [
+        0,
+        -0.5,
+        0.0
+      ],
+      "strength": 0.0,
+      "falloff": 0.0
+    },
+    {
+      "module": "light",
+      "interpolant": "q.agePercent",
+      "gradient": {
+        "rgb_points": [
+          {
+            "percent": 0,
+            "color": [
+              0.6,
+              0.7,
+              1.0
+            ]
+          },
+          {
+            "percent": 0.3,
+            "color": [
+              0.3,
+              0.35,
+              0.95
+            ]
+          },
+          {
+            "percent": 0.9,
+            "color": [
+              0.8,
+              0.1,
+              0.85
+            ]
+          },
+          {
+            "percent": 1.0,
+            "color": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "alpha_points": [
+          {
+            "percent": 0,
+            "alpha": 1.0
+          },
+          {
+            "percent": 0.95,
+            "alpha": 1.0
+          },
+          {
+            "percent": 1.0,
+            "alpha": 0.0
+          }
+        ]
+      },
+      "brightness": 0.25,
+      "falloff": 1.0,
+      "radius": 2.0
+    }
+  ],
+  "update_modules": [
+    {
+      "module": "tick_size",
+      "size": "(1-q.agePercent)/8"
+    }
+  ],
+  "collision_modules": [
+  ],
+  "forces": [
+    {
+      "module": "initial_velocity",
+      "direction": [
+        0,
+        -0.5,
+        0.0
+      ],
+      "strength": 0.0,
+      "falloff": 0.0
+    },
+    {
+      "strength": 0.2,
+      "module": "gravity"
+    },
+    {
+      "range": 1.0,
+      "strength": 0.25,
+      "falloff": 1.0,
+      "module": "point_force"
+    }
+  ],
+  "render_modules": [
+    {
+      "module": "color",
+      "interpolant": "q.agePercent",
+      "gradient": {
+        "rgb_points": [
+          {
+            "percent": 0,
+            "color": [
+              0.6,
+              0.7,
+              1.0
+            ]
+          },
+          {
+            "percent": 0.3,
+            "color": [
+              0.3,
+              0.35,
+              0.95
+            ]
+          },
+          {
+            "percent": 0.9,
+            "color": [
+              0.8,
+              0.1,
+              0.85
+            ]
+          },
+          {
+            "percent": 1.0,
+            "color": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "alpha_points": [
+          {
+            "percent": 0,
+            "alpha": 1.0
+          },
+          {
+            "percent": 0.95,
+            "alpha": 1.0
+          },
+          {
+            "percent": 1.0,
+            "alpha": 0.0
+          }
+        ]
+      }
+    }
+  ],
+  "face_velocity": false,
+  "velocity_stretch_factor": 0.0,
+  "should_collide": true
+}

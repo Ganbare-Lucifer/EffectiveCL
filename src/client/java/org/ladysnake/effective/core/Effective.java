@@ -11,7 +11,6 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -35,8 +34,6 @@ import org.ladysnake.effective.core.render.entity.model.SplashModel;
 import org.ladysnake.effective.core.render.entity.model.SplashRimModel;
 import org.ladysnake.effective.core.world.RenderedHypnotizingEntities;
 import org.ladysnake.effective.core.world.WaterfallCloudGenerators;
-import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
-import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
 
 public class Effective implements ClientModInitializer {
 	public static final String MODID = "effective";
@@ -50,7 +47,6 @@ public class Effective implements ClientModInitializer {
 	private static final Uniform1f intensityHypno = HYPNO_SHADER.findUniform1f("Intensity");
 	private static final Uniform1f sTimeHypno = HYPNO_SHADER.findUniform1f("STime");
 	private static final Uniform1f rainbowHypno = HYPNO_SHADER.findUniform1f("Rainbow");
-	private static final ScreenParticleHolder effectiveScreenParticleHolder = new ScreenParticleHolder();
 	// freeze frames for feedbacking
 	public static int freezeFrames = -1;
 	// particle types
@@ -96,7 +92,7 @@ public class Effective implements ClientModInitializer {
 //	}
 
 	public static Identifier id(String string) {
-		return new Identifier(MODID, string);
+		return Identifier.of(MODID, string);
 	}
 
 	@Override
