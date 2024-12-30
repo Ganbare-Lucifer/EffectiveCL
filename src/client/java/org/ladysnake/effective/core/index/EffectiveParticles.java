@@ -46,6 +46,6 @@ public interface EffectiveParticles {
 		ParticleFactoryRegistry.getInstance().register(RIPPLE, RippleParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(GLOW_RIPPLE, GlowRippleParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(BUBBLE, BubbleParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(END_BUBBLE, BubbleParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(END_BUBBLE, EndBubbleParticle.Factory::new);
 	}
 }

@@ -1,10 +1,17 @@
 package org.ladysnake.effective.core.utils;
 
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.EnderChestBlockEntity;
+import net.minecraft.block.entity.LidOpenable;
+import net.minecraft.block.enums.ChestType;
 import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LightType;
@@ -85,5 +92,98 @@ public class EffectiveUtils {
 
 	public static float getRandomFloatOrNegative(Random random) {
 		return random.nextFloat() * 2f - 1f;
+	}
+
+
+	public static void doUnderwaterChestLogic(World world, BlockEntity blockEntity) {
+		if (blockEntity instanceof LidOpenable lidOpenable) {
+			BlockState blockState = blockEntity.getCachedState();
+			ChestType chestType = blockState.contains(ChestBlock.CHEST_TYPE) ? blockState.get(ChestBlock.CHEST_TYPE) : ChestType.SINGLE;
+			Direction facing = blockState.contains(ChestBlock.FACING) ? blockState.get(ChestBlock.FACING) : Direction.NORTH;
+			Block block = blockState.getBlock();
+			if (block instanceof AbstractChestBlock && world.isWater(blockEntity.getPos()) && world.isWater(blockEntity.getPos().offset(Direction.UP, 1))) {
+				AbstractChestBlock<?> abstractChestBlock = (AbstractChestBlock) block;
+				boolean doubleChest = chestType != ChestType.SINGLE;
+
+				DoubleBlockProperties.PropertySource<? extends ChestBlockEntity> propertySource;
+				propertySource = abstractChestBlock.getBlockEntitySource(blockState, world, blockEntity.getPos(), true);
+
+				float openFactor = propertySource.apply(ChestBlock.getAnimationProgressRetriever(lidOpenable)).get(1.0f);
+
+				if (openFactor > 0) {
+					if (doubleChest) {
+						if (chestType == ChestType.LEFT) {
+							float xOffset = 0f;
+							float zOffset = 0f;
+							float xOffsetRand = 0f;
+							float zOffsetRand = 0f;
+
+							if (facing == Direction.NORTH) {
+								xOffset = 1f;
+								zOffset = .5f;
+								xOffsetRand = (world.random.nextFloat() - world.random.nextFloat()) * .8f;
+								zOffsetRand = (world.random.nextFloat() - world.random.nextFloat()) * .3f;
+							} else if (facing == Direction.SOUTH) {
+								xOffset = 0f;
+								zOffset = .5f;
+								xOffsetRand = (world.random.nextFloat() - world.random.nextFloat()) * .8f;
+								zOffsetRand = (world.random.nextFloat() - world.random.nextFloat()) * .3f;
+							} else if (facing == Direction.EAST) {
+								xOffset = .5f;
+								zOffset = 1f;
+								xOffsetRand = (world.random.nextFloat() - world.random.nextFloat()) * .3f;
+								zOffsetRand = (world.random.nextFloat() - world.random.nextFloat()) * .8f;
+							} else if (facing == Direction.WEST) {
+								xOffset = .5f;
+								zOffset = 0f;
+								xOffsetRand = (world.random.nextFloat() - world.random.nextFloat()) * .3f;
+								zOffsetRand = (world.random.nextFloat() - world.random.nextFloat()) * .8f;
+							}
+
+							for (int i = 0; i < 1 + world.random.nextInt(3); i++) {
+								spawnBubble(world, blockEntity.getPos().getX() + xOffset + xOffsetRand, blockEntity.getPos().getY() + .5f, blockEntity.getPos().getZ() + zOffset + zOffsetRand, block == Blocks.ENDER_CHEST);
+							}
+
+							if (openFactor <= .6f) {
+								spawnClosingBubble(world, blockEntity.getPos().getX() + xOffset, blockEntity.getPos().getY() + .5f, blockEntity.getPos().getZ() + zOffset, facing, true, block == Blocks.ENDER_CHEST);
+							}
+						}
+					} else {
+						for (int i = 0; i < 1 + world.random.nextInt(3); i++) {
+							spawnBubble(world, blockEntity.getPos().getX() + .5f + (world.random.nextFloat() - world.random.nextFloat()) * .3f, blockEntity.getPos().getY() + .5f, blockEntity.getPos().getZ() + .5f + (world.random.nextFloat() - world.random.nextFloat()) * .3f, block == Blocks.ENDER_CHEST);
+						}
+
+						if (openFactor <= .6f) {
+							spawnClosingBubble(world, blockEntity.getPos().getX() + .5f, blockEntity.getPos().getY() + .5f, blockEntity.getPos().getZ() + .5f, facing, false, block == Blocks.ENDER_CHEST);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public static void spawnBubble(World world, float x, float y, float z, boolean endChest) {
+		world.addParticle(endChest ? EffectiveParticles.END_BUBBLE : EffectiveParticles.BUBBLE, x, y, z, 0f, .05f + world.random.nextFloat() * .05f, 0f);
+	}
+
+	public static void spawnClosingBubble(World world, float x, float y, float z, Direction direction, boolean doubleChest, boolean endChest) {
+		for (int i = 0; i < (doubleChest ? 10 : 5); i++) {
+			float velX = .5f;
+			float velZ = .5f;
+			if (direction == Direction.NORTH) {
+				velX = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
+				velZ = -.05f - (world.random.nextFloat() / 5f);
+			} else if (direction == Direction.SOUTH) {
+				velX = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
+				velZ = .05f + (world.random.nextFloat() / 5f);
+			} else if (direction == Direction.EAST) {
+				velX = .05f + (world.random.nextFloat() / 5f);
+				velZ = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
+			} else if (direction == Direction.WEST) {
+				velX = -.05f - (world.random.nextFloat() / 5f);
+				velZ = (world.random.nextFloat() - world.random.nextFloat()) / (doubleChest ? 2.5f : 5f);
+			}
+			world.addParticle(endChest ? EffectiveParticles.END_BUBBLE : EffectiveParticles.BUBBLE, x, y, z, velX, .1f - (world.random.nextFloat() * .1f), velZ);
+		}
 	}
 }
